@@ -1,7 +1,6 @@
 import 'package:e_commerce/presentation/component/common/productCard.dart';
 import 'package:e_commerce/presentation/component/common/textFeild.dart';
 import 'package:e_commerce/presentation/detail/detail.dart';
-import 'package:e_commerce/presentation/home/homepage.dart';
 import 'package:e_commerce/utility/constant/color.dart';
 import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,25 +14,22 @@ class SearchItem extends StatelessWidget {
     return Scaffold(
       
       bottomSheet: BottomSheet(
-        
-        
-        backgroundColor: Color.fromARGB(255, 189, 185, 185),
+        backgroundColor: const Color.fromARGB(255, 189, 185, 185),
         onClosing: (){},
          builder: (context) => Container(
           height: 250,
           child:  Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Catagory",style: TextStyle(fontSize: 18),),
-                InputField(),
+                const Text("Catagory",style: TextStyle(fontSize: 18),),
+                const InputField(),
                 AppSpacing.medium,
-                Text("Price",style: TextStyle(fontSize: 18),),
+                const Text("Price",style: TextStyle(fontSize: 18),),
                 CupertinoPicker(
                   squeeze: 10,
-                  
-                  backgroundColor: Color.fromARGB(255, 131, 129, 129),
+                  backgroundColor: const Color.fromARGB(255, 131, 129, 129),
                   itemExtent: 10, onSelectedItemChanged: (int x){}, children: [
                     Container(
                       width: 150,
@@ -57,6 +53,7 @@ class SearchItem extends StatelessWidget {
             ),
           ),
          ),),
+
       appBar: AppBar(
         title: const Text("Search"),
         centerTitle: true,
@@ -80,7 +77,7 @@ class SearchItem extends StatelessWidget {
         child: ListView.builder(
           itemCount: 10,
           shrinkWrap: true,
-          itemBuilder: (context, index) => ProductCard(onTap:()=> Navigator.pushNamed(context, "/detail_screen"),),),
+          itemBuilder: (context, index) => ProductCard(onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(),)),),),
       )
     );
   }
@@ -94,7 +91,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         
           color: const Color.fromARGB(255, 221, 216, 216)

@@ -17,15 +17,9 @@ class ECommerce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      initialRoute: "/",
-      routes: {"/":(context)=>const Homepage(),
-      "/detail_screen":(context) => const DetailScreen(),
-      "/search_screen":(context)=>const SearchItem(),
-      "/add_screen":(context)=>const AddProduct()
-      },
-     
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
+      home: const Homepage(),
     );
   }
 }

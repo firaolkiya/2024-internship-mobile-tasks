@@ -1,6 +1,5 @@
-import 'dart:ffi';
 
-import 'package:e_commerce/presentation/home/homepage.dart';
+
 import 'package:e_commerce/utility/constant/image.dart';
 import 'package:e_commerce/utility/constant/string.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +91,9 @@ class DetailScreen extends StatelessWidget {
     );
   }
 }
+
+
+
 
 class NumberCard extends StatelessWidget {
   const NumberCard({

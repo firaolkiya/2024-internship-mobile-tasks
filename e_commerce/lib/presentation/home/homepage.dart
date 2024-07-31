@@ -4,6 +4,8 @@ import 'package:e_commerce/presentation/detail/detail.dart';
 import 'package:e_commerce/presentation/search/search.dart';
 import 'package:e_commerce/utility/constant/string.dart';
 import 'package:flutter/material.dart';
+
+
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
@@ -11,26 +13,31 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: InkWell(
-          onTap: (){Navigator.pushNamed(context, "/add_screen");},
+          onTap: (){
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder:(context) => const AddProduct()));
+          },
           child: const CircleAvatar(
             radius: 25,
             child: Icon(Icons.add),
-            
             backgroundColor: Colors.blue,
           ),
         ),
+
+
         appBar: AppBar(
           leading: Container(
-            margin: EdgeInsets.only(left: 5),
+            margin: const EdgeInsets.only(left: 5),
             width: 20,
             height: 20,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Color.fromARGB(59, 58, 56, 56).withOpacity(0.5)),
+                color: const Color.fromARGB(59, 58, 56, 56).withOpacity(0.5)),
           ),
           actions: [
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow:const [ BoxShadow(
@@ -55,6 +62,8 @@ class Homepage extends StatelessWidget {
               ]),
             )
           ],
+
+
           bottom:  PreferredSize(
             preferredSize: Size(MediaQuery.of(context).size.width,80),
             child: Padding(
@@ -71,9 +80,9 @@ class Homepage extends StatelessWidget {
                   ),
                   InkWell(
                       
-                    onTap: ()=>Navigator.pushNamed(context, "/search_screen"),
+                    onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchItem(),)),
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -97,6 +106,7 @@ class Homepage extends StatelessWidget {
               ),
             ),
             ),
+
           
           title: Padding(
             padding: const EdgeInsets.only(top: 12.0,left: 8),
@@ -108,18 +118,19 @@ class Homepage extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
             
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(AppString.sayHello),
               ],
             ),
           ),
         ),
+
+
         body:  ListView.builder(
                 itemCount: 10,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => ProductCard(onTap: (){
-                  Navigator.pushNamed(context, "/detail_screen");
-                  
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen(),));
                 },),
               ),
           

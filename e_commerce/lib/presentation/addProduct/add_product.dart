@@ -1,6 +1,5 @@
 import 'package:e_commerce/presentation/component/common/textFeild.dart';
 import 'package:e_commerce/utility/constant/color.dart';
-import 'package:e_commerce/utility/constant/image.dart';
 import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
