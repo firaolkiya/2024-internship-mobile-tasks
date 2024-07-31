@@ -14,6 +14,7 @@ class Homepage extends StatelessWidget {
         floatingActionButton: InkWell(
           onTap: (){Get.to(AddProduct());},
           child: const CircleAvatar(
+            radius: 25,
             child: Icon(Icons.add),
             
             backgroundColor: Colors.blue,
