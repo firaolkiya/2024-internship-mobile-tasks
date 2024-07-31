@@ -1,11 +1,7 @@
 
-import 'package:e_commerce/presentation/addProduct/add_product.dart';
-import 'package:e_commerce/presentation/detail/detail.dart';
-import 'package:e_commerce/presentation/home/homepage.dart';
-import 'package:e_commerce/presentation/search/search.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
+import 'features/presentation/pages/home/homepage.dart';
 
 void main(List<String> args) {
   runApp(const ECommerce());

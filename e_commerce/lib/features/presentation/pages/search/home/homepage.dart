@@ -1,10 +1,11 @@
-import 'package:e_commerce/presentation/addProduct/add_product.dart';
-import 'package:e_commerce/presentation/component/common/navigator_builder.dart';
-import 'package:e_commerce/presentation/component/common/productCard.dart';
-import 'package:e_commerce/presentation/detail/detail.dart';
-import 'package:e_commerce/presentation/search/search.dart';
-import 'package:e_commerce/utility/constant/string.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/utility/constant/string.dart';
+import '../../../widget/common/navigator_builder.dart';
+import '../../../widget/common/productCard.dart';
+import '../../addProduct/add_product.dart';
+import '../../detail/detail.dart';
+import '../search.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -17,8 +18,8 @@ class Homepage extends StatelessWidget {
           Navigator.of(context).push(
   
             PageRouteBuilder(
-              reverseTransitionDuration: Duration(seconds: 1),
-              transitionDuration: Duration(seconds: 1),
+              reverseTransitionDuration: const Duration(seconds: 1),
+              transitionDuration: const Duration(seconds: 1),
               transitionsBuilder: (context, animation, secondaryAnimation, child){
                 const begin = Offset(1, 0);
                 const end=Offset.zero;
@@ -28,13 +29,13 @@ class Homepage extends StatelessWidget {
                 child: child );
 
               },
-              pageBuilder: (context, animation, secondaryAnimation) => AddProduct(),)
+              pageBuilder: (context, animation, secondaryAnimation) => const AddProduct(),)
           );
         },
         child: const CircleAvatar(
           radius: 25,
-          child: Icon(Icons.add),
           backgroundColor: Colors.blue,
+          child: Icon(Icons.add),
         ),
       ),
       appBar: AppBar(
@@ -80,7 +81,7 @@ class Homepage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Available Products",
+                  'Available Products',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 InkWell(
@@ -109,7 +110,7 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "jul 30 2024",
+                'jul 30 2024',
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 5),
@@ -126,20 +127,20 @@ class Homepage extends StatelessWidget {
              Navigator.of(context).push(
   
             PageRouteBuilder(
-              reverseTransitionDuration: Duration(seconds: 1),
-              transitionDuration: Duration(seconds: 1),
+              reverseTransitionDuration: const Duration(seconds: 1),
+              transitionDuration: const Duration(seconds: 1),
               transitionsBuilder: (context, animation, secondaryAnimation, child){
                 const begin = Offset(1, 0);
                 const end=Offset.zero;
                 const curve = Curves.easeInCubic;
-                var twin = Tween<Offset>(begin: begin,end: end).chain(CurveTween(curve: curve));
+                Tween<Offset>(begin: begin,end: end).chain(CurveTween(curve: curve));
                 return FadeTransition(
                 
                 opacity:animation ,
                 child: child );
 
               },
-              pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(),)
+              pageBuilder: (context, animation, secondaryAnimation) => const DetailScreen(),)
           );
       
           },

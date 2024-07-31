@@ -1,10 +1,11 @@
-import 'package:e_commerce/presentation/component/common/productCard.dart';
-import 'package:e_commerce/presentation/component/common/textFeild.dart';
-import 'package:e_commerce/presentation/detail/detail.dart';
-import 'package:e_commerce/utility/constant/color.dart';
-import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/utility/constant/color.dart';
+import '../../../../core/utility/constant/spacing.dart';
+import '../../widget/common/productCard.dart';
+import '../../widget/common/textFeild.dart';
+import '../detail/detail.dart';
 
 class SearchItem extends StatelessWidget {
   const SearchItem({super.key});
@@ -16,17 +17,17 @@ class SearchItem extends StatelessWidget {
       bottomSheet: BottomSheet(
         backgroundColor: const Color.fromARGB(255, 189, 185, 185),
         onClosing: (){},
-         builder: (context) => Container(
+         builder: (context) => SizedBox(
           height: 250,
           child:  Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Catagory",style: TextStyle(fontSize: 18),),
+                const Text('Catagory',style: TextStyle(fontSize: 18),),
                 const InputField(),
                 AppSpacing.medium,
-                const Text("Price",style: TextStyle(fontSize: 18),),
+                const Text('Price',style: TextStyle(fontSize: 18),),
                 CupertinoPicker(
                   squeeze: 10,
                   backgroundColor: const Color.fromARGB(255, 131, 129, 129),
@@ -45,7 +46,7 @@ class SearchItem extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 50)
                  ),
                 onPressed: (){}, 
-              child: const Text("Apply")),
+              child: const Text('Apply')),
               const SizedBox(height: 10,),
 
                 
@@ -55,7 +56,7 @@ class SearchItem extends StatelessWidget {
          ),),
 
       appBar: AppBar(
-        title: const Text("Search"),
+        title: const Text('Search'),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -124,7 +125,7 @@ class SearchField extends StatelessWidget {
                 color: Colors.white,
               )),
           filled: true,
-          label: const Text("Search product"),
+          label: const Text('Search product'),
           border:OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
     

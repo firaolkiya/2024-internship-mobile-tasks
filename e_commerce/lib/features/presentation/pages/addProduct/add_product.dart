@@ -1,8 +1,8 @@
-import 'package:e_commerce/presentation/component/common/textFeild.dart';
-import 'package:e_commerce/utility/constant/color.dart';
-import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import '../../../../core/utility/constant/color.dart';
+import '../../../../core/utility/constant/spacing.dart';
+import '../../widget/common/textFeild.dart';
 
 class AddProduct extends StatelessWidget {
   const AddProduct({super.key});
@@ -11,7 +11,7 @@ class AddProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Add Product"),
+          title: const Text('Add Product'),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios)),
@@ -37,25 +37,25 @@ class AddProduct extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.image,size: 100,),
-                      Text("Upload photo")
+                      Text('Upload photo')
                     ],
                   )
                 )
               ),
               AppSpacing.medium,
-              const Text("Name",style: TextStyle(fontSize: 20),),
+              const Text('Name',style: TextStyle(fontSize: 20),),
               AppSpacing.large,
               const InputField(),
               AppSpacing.large,
-              const Text("Catagory",style: TextStyle(fontSize: 20),),
+              const Text('Catagory',style: TextStyle(fontSize: 20),),
               AppSpacing.large,
               const InputField(),
               AppSpacing.large,
-              const Text("Price",style: TextStyle(fontSize: 20),),
+              const Text('Price',style: TextStyle(fontSize: 20),),
               AppSpacing.large,
               const InputField(),
               AppSpacing.large,
-              const Text("description",style: TextStyle(fontSize: 20),),
+              const Text('description',style: TextStyle(fontSize: 20),),
               AppSpacing.large,
               const InputField(),
               AppSpacing.large,
@@ -67,7 +67,7 @@ class AddProduct extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 60)
                  ),
                 onPressed: (){}, 
-              child: const Text("Add")),
+              child: const Text('Add')),
               const SizedBox(height: 10,),
               OutlinedButton(
                  style: OutlinedButton.styleFrom(
@@ -75,7 +75,7 @@ class AddProduct extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 60)
                  ),
                 onPressed: (){}, 
-              child: const Text("Delete"))
+              child: const Text('Delete'))
             ],
           ),
         ),),

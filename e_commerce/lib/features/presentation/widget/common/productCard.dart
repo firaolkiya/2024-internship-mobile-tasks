@@ -1,5 +1,5 @@
-import 'package:e_commerce/utility/constant/image.dart';
-import 'package:e_commerce/utility/constant/string.dart';
+import 'package:e_commerce/core/utility/constant/image.dart';
+import 'package:e_commerce/core/utility/constant/string.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {

@@ -1,9 +1,10 @@
 
 
-import 'package:e_commerce/utility/constant/image.dart';
-import 'package:e_commerce/utility/constant/string.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/utility/constant/image.dart';
+import '../../../../core/utility/constant/string.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});
