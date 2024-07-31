@@ -4,7 +4,6 @@ import 'package:e_commerce/utility/constant/image.dart';
 import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
 class AddProduct extends StatelessWidget {
   const AddProduct({super.key});
@@ -15,7 +14,7 @@ class AddProduct extends StatelessWidget {
       appBar: AppBar(
           title: const Text("Add Product"),
           leading: IconButton(
-            onPressed: () => Get.back(),
+            onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios)),
           
       ),

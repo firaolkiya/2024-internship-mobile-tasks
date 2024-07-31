@@ -21,7 +21,7 @@ class DetailScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: (){
-            Get.back();
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios)),
       ),

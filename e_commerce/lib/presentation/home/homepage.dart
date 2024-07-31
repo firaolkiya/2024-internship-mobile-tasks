@@ -4,7 +4,6 @@ import 'package:e_commerce/presentation/detail/detail.dart';
 import 'package:e_commerce/presentation/search/search.dart';
 import 'package:e_commerce/utility/constant/string.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
@@ -12,7 +11,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: InkWell(
-          onTap: (){Get.to(AddProduct());},
+          onTap: (){Navigator.pushNamed(context, "/add_screen");},
           child: const CircleAvatar(
             radius: 25,
             child: Icon(Icons.add),
@@ -72,7 +71,7 @@ class Homepage extends StatelessWidget {
                   ),
                   InkWell(
                       
-                    onTap: ()=>Get.toNamed("/search"),
+                    onTap: ()=>Navigator.pushNamed(context, "/search_screen"),
                     child: Container(
                       padding: EdgeInsets.all(10),
                       
@@ -119,7 +118,7 @@ class Homepage extends StatelessWidget {
                 itemCount: 10,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => ProductCard(onTap: (){
-                  Get.toNamed("/detail");
+                  Navigator.pushNamed(context, "/detail_screen");
                   
                 },),
               ),

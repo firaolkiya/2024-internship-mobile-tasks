@@ -6,7 +6,6 @@ import 'package:e_commerce/utility/constant/color.dart';
 import 'package:e_commerce/utility/constant/spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SearchItem extends StatelessWidget {
   const SearchItem({super.key});
@@ -63,7 +62,7 @@ class SearchItem extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Get.back();
+              Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios)),
             bottom:const  PreferredSize(
@@ -81,7 +80,7 @@ class SearchItem extends StatelessWidget {
         child: ListView.builder(
           itemCount: 10,
           shrinkWrap: true,
-          itemBuilder: (context, index) => ProductCard(onTap:()=> Get.toNamed("/detail"),),),
+          itemBuilder: (context, index) => ProductCard(onTap:()=> Navigator.pushNamed(context, "/detail_screen"),),),
       )
     );
   }

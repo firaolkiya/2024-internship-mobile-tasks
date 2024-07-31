@@ -16,13 +16,14 @@ class ECommerce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
-      getPages: [
-        GetPage(name: "/", page:()=>const Homepage()),
-        GetPage(name: "/detail", page:()=>const DetailScreen()),
-        GetPage(name: "/search", page:()=>const SearchItem()),
-        GetPage(name: "/add", page:()=>const AddProduct())
-      ],
+    return  MaterialApp(
+      initialRoute: "/",
+      routes: {"/":(context)=>const Homepage(),
+      "/detail_screen":(context) => const DetailScreen(),
+      "/search_screen":(context)=>const SearchItem(),
+      "/add_screen":(context)=>const AddProduct()
+      },
+     
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
     );
