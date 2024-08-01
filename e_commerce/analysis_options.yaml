@@ -10,5 +10,7 @@ linter:
       always_declare_return_types: true
       prefer_single_quotes: true
       directives_ordering: true
+      depend_on_referenced_packages: true
       prefer_relative_imports: true
+      
       
