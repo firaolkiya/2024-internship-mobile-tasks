@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utility/constant/color.dart';
 import '../../../../core/utility/constant/spacing.dart';
-import '../../widget/common/textFeild.dart';
+import '../../widget/common/text_feild.dart';
 
 class AddProduct extends StatelessWidget {
   const AddProduct({super.key});

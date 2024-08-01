@@ -1,11 +1,12 @@
-import 'package:e_commerce/core/utility/constant/image.dart';
-import 'package:e_commerce/core/utility/constant/string.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, this.onTap});
+import '../../../../core/utility/constant/image.dart';
+import '../../../../core/utility/constant/string.dart';
 
-  final onTap;
+class ProductCard extends StatelessWidget {
+  const ProductCard({super.key, required this.onTap});
+
+  final VoidCallback  onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +41,11 @@ class ProductCard extends StatelessWidget {
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("\$120",style: TextStyle(fontWeight:FontWeight.bold,fontSize: 20)),
+                    Text('\$120',style: TextStyle(fontWeight:FontWeight.bold,fontSize: 20)),
                     Row(
                       children: [
                         Icon(Icons.star,color: Colors.orange,),
-                        Text("(4.0)",style: TextStyle(fontSize: 18))
+                        Text('(4.0)',style: TextStyle(fontSize: 18))
                       ],
                     )
                   ],

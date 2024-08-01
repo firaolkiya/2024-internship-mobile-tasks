@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utility/constant/string.dart';
 import '../../widget/common/navigator_builder.dart';
-import '../../widget/common/productCard.dart';
+import '../../widget/common/product_card.dart';
 import '../addProduct/add_product.dart';
 import '../detail/detail.dart';
 import '../search/search.dart';
@@ -18,8 +18,8 @@ class Homepage extends StatelessWidget {
           Navigator.of(context).push(
   
             PageRouteBuilder(
-              reverseTransitionDuration: Duration(seconds: 1),
-              transitionDuration: Duration(seconds: 1),
+              reverseTransitionDuration: const Duration(seconds: 1),
+              transitionDuration: const Duration(seconds: 1),
               transitionsBuilder: (context, animation, secondaryAnimation, child){
                 const begin = Offset(1, 0);
                 const end=Offset.zero;
@@ -29,13 +29,13 @@ class Homepage extends StatelessWidget {
                 child: child );
 
               },
-              pageBuilder: (context, animation, secondaryAnimation) => AddProduct(),)
+              pageBuilder: (context, animation, secondaryAnimation) => const AddProduct(),)
           );
         },
         child: const CircleAvatar(
           radius: 25,
-          child: Icon(Icons.add),
           backgroundColor: Colors.blue,
+          child: Icon(Icons.add),
         ),
       ),
       appBar: AppBar(
@@ -127,8 +127,8 @@ class Homepage extends StatelessWidget {
              Navigator.of(context).push(
   
             PageRouteBuilder(
-              reverseTransitionDuration: Duration(seconds: 1),
-              transitionDuration: Duration(seconds: 1),
+              reverseTransitionDuration: const Duration(seconds: 1),
+              transitionDuration: const Duration(seconds: 1),
               transitionsBuilder: (context, animation, secondaryAnimation, child){
                 const begin = Offset(1, 0);
                 const end=Offset.zero;
@@ -140,7 +140,7 @@ class Homepage extends StatelessWidget {
                 child: child );
 
               },
-              pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(),)
+              pageBuilder: (context, animation, secondaryAnimation) => const DetailScreen(),)
           );
       
           },

@@ -23,7 +23,7 @@ class DetailScreen extends StatelessWidget {
           onPressed: (){
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios)),
+          icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -35,7 +35,7 @@ class DetailScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(AppString.shoesTitle),
-                  const Text("(4.0)", style: TextStyle(fontSize: 18))
+                  const Text('(4.0)', style: TextStyle(fontSize: 18))
                 ],
               ),
               Row(
@@ -46,12 +46,12 @@ class DetailScreen extends StatelessWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  const Text("\$120",
+                  const Text('\$120',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 ],
               ),
-              Text("Size"),
+              const Text('Size'),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(children: number),
@@ -66,22 +66,22 @@ class DetailScreen extends StatelessWidget {
                       onPressed: () {},
                       
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
 
                       ),
-                     child: Text("Delete")
+                     child: const Text('Delete')
                      ),
                     FilledButton(
                     
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 63, 81, 224),
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        backgroundColor: const Color.fromARGB(255, 63, 81, 224),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
 
                       ),
 
-                      onPressed: () {}, child: Text("Update")),
+                      onPressed: () {}, child: const Text('Update')),
                   ],
                 ),
               )
@@ -110,19 +110,19 @@ class NumberCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => 
        InkWell(
-        overlayColor: MaterialStatePropertyAll(Colors.black12),
+        overlayColor: const MaterialStatePropertyAll(Colors.black12),
         focusColor: Colors.lightBlueAccent,
         onTap: (){controller.selectedIndex.value=i;},
       
         child: Container(
-           padding: EdgeInsets.all(15),
+           padding: const EdgeInsets.all(15),
            decoration: BoxDecoration(
             color:  controller.getColor(i),
             borderRadius: BorderRadius.circular(10)
            ),
             child: Text(
               i.toString(),
-          style: TextStyle(fontSize: 35, fontWeight: FontWeight.normal),
+          style: const TextStyle(fontSize: 35, fontWeight: FontWeight.normal),
         )),
       ),
     );
