@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utility/constant/string.dart';
+import '../../../../core/utility/constant/color.dart';
+import '../../../../core/utility/constant/image.dart';
 import '../../widget/common/navigator_builder.dart';
 import '../../widget/common/product_card.dart';
 import '../addProduct/add_product.dart';
@@ -38,7 +39,9 @@ class Homepage extends StatelessWidget {
           child: Icon(Icons.add),
         ),
       ),
+      
       appBar: AppBar(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         leading: Container(
           margin: const EdgeInsets.only(left: 5),
           width: 20,
@@ -46,6 +49,12 @@ class Homepage extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromARGB(59, 58, 56, 56).withOpacity(0.5)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image(
+              fit: BoxFit.cover,
+              image: AssetImage(AppImage.fira)),
+          ),
         ),
         actions: [
           Container(
@@ -104,17 +113,23 @@ class Homepage extends StatelessWidget {
             ),
           ),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 12.0, left: 8),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 12.0, left: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'jul 30 2024',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16,fontWeight: FontWeight.w200),
               ),
-              const SizedBox(height: 5),
-              Text(AppString.sayHello),
+              SizedBox(height: 5),
+              Text.rich(
+                
+                TextSpan(
+
+                  text: 'Hello ',style: TextStyle(fontSize: 28,color: Color.fromARGB(255, 190, 54, 244)),
+                  children: [TextSpan(text: 'Firaol',style: TextStyle(color: AppColor.blueColor))])
+              ),
             ],
           ),
         ),

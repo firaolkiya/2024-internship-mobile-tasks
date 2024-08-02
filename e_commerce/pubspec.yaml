@@ -21,11 +21,14 @@ dependencies:
   dartz: ^0.10.1
   get: ^4.6.6
   flutter_lints: ^3.0.2
+  http: any
       
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.0.5
+  build_runner: ^2.1.2
 
   
 
