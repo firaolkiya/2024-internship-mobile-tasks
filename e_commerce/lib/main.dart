@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'features/presentation/pages/home/homepage.dart';
+import 'features/product/presentation/pages/home/homepage.dart';
 
 void main(List<String> args) {
   runApp(const ECommerce());

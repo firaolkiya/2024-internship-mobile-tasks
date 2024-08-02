@@ -20,6 +20,15 @@ class ProductModel extends Product {
             imageUrl: jsonObject['imageUrl'],
             price: jsonObject['price']
     );
+
+    
+    Map<String, dynamic> toJson( )=>
+                {'id': id,
+                  'name': name,
+                  'price': price,
+                  'description': description,
+                  'imageUrl': imageUrl
+                };
   
   
 }

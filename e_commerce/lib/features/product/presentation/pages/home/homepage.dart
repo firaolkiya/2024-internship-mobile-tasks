@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utility/constant/color.dart';
-import '../../../../core/utility/constant/image.dart';
+import '../../../../../core/utility/constant/color.dart';
+import '../../../../../core/utility/constant/image.dart';
 import '../../widget/common/navigator_builder.dart';
 import '../../widget/common/product_card.dart';
 import '../addProduct/add_product.dart';

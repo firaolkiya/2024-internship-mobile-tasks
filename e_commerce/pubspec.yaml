@@ -42,6 +42,7 @@ flutter:
   assets:
     - asset/shoes.jpeg
     - asset/fira.jpg
+    - asset/json/dummy_data.json
     
 
 

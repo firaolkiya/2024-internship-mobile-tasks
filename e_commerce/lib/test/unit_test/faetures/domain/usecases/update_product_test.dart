@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/features/domain/entities/product.dart';
-import 'package:e_commerce/features/domain/usecases/update_product_uc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
+// ignore: depend_on_referenced_packages
 import 'package:mockito/mockito.dart';
 
-import '../../../helper/product_mock_generator.mocks.dart';
+import '../../../../../features/product/domain/entities/product.dart';
+import '../../../../../features/product/domain/usecases/update_product_uc.dart';
+import '../../../../helper/product_mock_generator.mocks.dart';
 
 void main() {
     MockProductRepository mockProductRepository = MockProductRepository();

@@ -1,6 +1,4 @@
 {
-    "status": "success",
-    "message": "Product fetched successfully",
     "data": {
       "id": 1,
       "price": 19.99,

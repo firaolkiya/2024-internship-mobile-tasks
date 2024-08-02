@@ -1,7 +1,7 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../../core/error/failures/failurs.dart';
+import '../../../../core/error/failures/failurs.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repository/product_repository.dart';
 import '../data sources/local/products.dart';

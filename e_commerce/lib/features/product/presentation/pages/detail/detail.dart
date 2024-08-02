@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utility/constant/image.dart';
-import '../../../../core/utility/constant/string.dart';
+import '../../../../../core/utility/constant/image.dart';
+import '../../../../../core/utility/constant/string.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});

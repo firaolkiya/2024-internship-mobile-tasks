@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utility/constant/image.dart';
-import '../../../../core/utility/constant/string.dart';
+import '../../../../../core/utility/constant/image.dart';
+import '../../../../../core/utility/constant/string.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.onTap});

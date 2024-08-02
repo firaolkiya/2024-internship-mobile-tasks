@@ -1,41 +1,54 @@
 
 import 'dart:convert';
 
-import 'package:e_commerce/features/data/model/product_model.dart';
-import 'package:e_commerce/features/domain/entities/product.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../helper/read_json.dart';
+import '../../../../../features/product/data/model/product_model.dart';
+import '../../../../../features/product/domain/entities/product.dart';
+import '../../../../helper/read_json.dart';
 
-void main() {
-   
+void main()  {
+   TestWidgetsFlutterBinding.ensureInitialized();
    final productModel = ProductModel(
     id: 1, 
     price: 250,
      imageUrl: 'asset/image/shoes',
       name: 'shoes',
-       description: 'high quality');
+       description: 'high quality'
+       );
 
-
-    
     test('should sub class of the product class',
      () async{
-
-       expect(productModel, equals(Product));
+       expect(productModel, isA<Product>());
     });
-
-      
-      final Map<String,dynamic>jsobject = json.decode(
-            readJson('test/helper/dummy_data.json')
-          );
-         final pr = ProductModel.fromJson(jsobject);
-
+       
+       
     test('should be instance of product',
      () async{
+        final String jsonA = await readJson();
+      
+        
+      final Map<String,dynamic>jsobject =  await json.decode(jsonA)['data'];
+         final pr = ProductModel.fromJson(jsobject);
 
-               expect(pr, isA<Product>());
+          expect(pr, isA<Product>());
          
     });
+    final jsons = {
+       'id': 1, 
+    'price': 250,
+     'imageUrl': 'asset/image/shoes',
+      'name': 'shoes',
+       'description': 'high quality'
+    };
+    test('to json', ()   async {
+       
+       final result = productModel.toJson();
+       expect(result, equals(jsons));
+    }
+
+    );
 
 
 }

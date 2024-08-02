@@ -7,9 +7,9 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:e_commerce/core/error/failures/failurs.dart' as _i5;
-import 'package:e_commerce/features/domain/entities/product.dart' as _i6;
-import 'package:e_commerce/features/domain/entities/product.dart';
-import 'package:e_commerce/features/domain/repository/product_repository.dart'
+import 'package:e_commerce/features/product/domain/entities/product.dart' as _i6;
+import 'package:e_commerce/features/product/domain/entities/product.dart';
+import 'package:e_commerce/features/product/domain/repository/product_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 

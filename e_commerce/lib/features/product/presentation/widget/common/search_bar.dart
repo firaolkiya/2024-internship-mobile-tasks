@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utility/constant/color.dart';
-import '../../../../core/utility/constant/spacing.dart';
+import '../../../../../core/utility/constant/color.dart';
+import '../../../../../core/utility/constant/spacing.dart';
 import 'text_feild.dart';
 
 class SearchField extends StatelessWidget {
