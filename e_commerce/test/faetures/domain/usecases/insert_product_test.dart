@@ -9,7 +9,6 @@ import '../../../helper/product_mock_generator.mocks.dart';
 
 void main() {
     
-    
     MockProductRepository mockProductRepository = MockProductRepository();
     InsertProductUsecase insertProductUsecase =InsertProductUsecase(productRepository: mockProductRepository);
 
@@ -23,10 +22,12 @@ Product product = Product(
   );
 
     test('should call product repository', () async{
-           when(mockProductRepository.insertProduct(product: product)).thenAnswer((realInvocation) async => const Right('added succesfully'));
+           when(mockProductRepository
+                  .insertProduct(product: product))
+                    .thenAnswer((realInvocation) async => const Right('added succesfully'));
 
            final response = await insertProductUsecase.execute(product);
-
+ 
            expect(response, const Right('added succesfully'));
     });
 

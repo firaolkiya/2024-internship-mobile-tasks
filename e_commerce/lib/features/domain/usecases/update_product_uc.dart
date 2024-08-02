@@ -3,6 +3,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/failures/failurs.dart';
+import '../entities/product.dart';
 import '../repository/product_repository.dart';
 
 class UpdateProductUsecase{
@@ -11,13 +12,8 @@ class UpdateProductUsecase{
 
   UpdateProductUsecase({required this.productRepository});
 
-  Future<Either<Failure,String>> execute({required int id,
-                                                   String? name ='',
-                                                   String? imageUrl='',
-                                                   double? price=0,
-                                                   String? description=''
-                                                   }) async{
-    return productRepository.updateProduct(id: id,name: name,imageUrl: imageUrl,price: price,description: description);
+  Future<Either<Failure,String>> execute({required int id,required Product product}) async{
+    return productRepository.updateProduct(id: id,product: product);
   }
    
 }
