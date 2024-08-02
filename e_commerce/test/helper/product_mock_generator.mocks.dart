@@ -8,6 +8,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:e_commerce/core/error/failures/failurs.dart' as _i5;
 import 'package:e_commerce/features/domain/entities/product.dart' as _i6;
+import 'package:e_commerce/features/domain/entities/product.dart';
 import 'package:e_commerce/features/domain/repository/product_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -104,10 +105,7 @@ class MockProductRepository extends _i1.Mock implements _i3.ProductRepository {
   @override
   _i4.Future<_i2.Either<_i5.Failure, String>> updateProduct({
     required int? id,
-    String? name,
-    String? imageUrl,
-    double? price,
-    String? description,
+    Product? product
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -115,10 +113,7 @@ class MockProductRepository extends _i1.Mock implements _i3.ProductRepository {
           [],
           {
             #id: id,
-            #name: name,
-            #imageUrl: imageUrl,
-            #price: price,
-            #description: description,
+            #product: product,
           },
         ),
         returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
@@ -129,10 +124,7 @@ class MockProductRepository extends _i1.Mock implements _i3.ProductRepository {
             [],
             {
               #id: id,
-              #name: name,
-              #imageUrl: imageUrl,
-              #price: price,
-              #description: description,
+              #product: product
             },
           ),
         )),
