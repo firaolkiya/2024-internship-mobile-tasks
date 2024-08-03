@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 // ignore: depend_on_referenced_packages
 import 'package:mockito/mockito.dart';
 
-import '../../../../../features/product/domain/entities/product.dart';
-import '../../../../../features/product/domain/usecases/insert_product.dart';
+import '../../../../../lib/features/product/domain/entities/product.dart';
+import '../../../../../lib/features/product/domain/usecases/insert_product.dart';
 import '../../../../helper/product_mock_generator.mocks.dart';
 
 void main() {

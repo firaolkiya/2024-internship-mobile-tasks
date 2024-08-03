@@ -29,6 +29,7 @@ class ProductModel extends Product {
                   'description': description,
                   'imageUrl': imageUrl
                 };
+    Product toProduct()=>Product(id: id, price: price, imageUrl: imageUrl, name: name, description: description);
   
   
 }

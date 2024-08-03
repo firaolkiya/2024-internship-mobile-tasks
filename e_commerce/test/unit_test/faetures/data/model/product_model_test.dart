@@ -1,11 +1,11 @@
 
 import 'dart:convert';
 
+import 'package:e_commerce/features/product/data/model/product_model.dart';
+import 'package:e_commerce/features/product/domain/entities/product.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../../features/product/data/model/product_model.dart';
-import '../../../../../features/product/domain/entities/product.dart';
 import '../../../../helper/read_json.dart';
 
 void main()  {
