@@ -14,7 +14,7 @@
 ## **Introduction**
 This document provides an overview of the architecture, data flow, and navigation implementation for the eCommerce Mobile App built using Flutter. The app adheres to Clean Architecture principles and employs Test-Driven Development (TDD) practices. The core functionality includes CRUD operations for products, smooth navigation between screens, and effective data handling using repositories.
 
-**Architecture**
+## **Architecture**
 The eCommerce Mobile App is structured following Clean Architecture principles, which ensures a clear separation of concerns, making the app more maintainable and scalable. The architecture is divided into three main layers:
 
 **Presentation Laye**r: Handles the UI and user interactions.
@@ -29,7 +29,7 @@ The domain layer contains the core business logic of the application. This inclu
 **Data Layer**
 The data layer is responsible for data retrieval and persistence. It includes models, data sources, and repositories. Repositories act as a single source of truth for data, abstracting the details of data sources.
 
-**Data Flow**
+## **Data Flow**
 The data flow in the app follows a unidirectional pattern, ensuring a clear and predictable flow of data:
 
    ** - User Interaction**: The user interacts with the UI.
@@ -38,7 +38,7 @@ The data flow in the app follows a unidirectional pattern, ensuring a clear and 
     **- Data Layer: Repositories** retrieve data from local or remote data sources and return the data to the use cases.
    ** - Domain Layer**: Use cases return the processed data to the presentation layer.
     **- Presentation Layer**: The UI components display the data to the user.
-### Navigation
+## Navigation
 The app uses Flutter's built-in navigation methods and named routes to manage screen transitions.
 
 **Screens**
@@ -53,26 +53,26 @@ The following named routes are defined for navigation:
 /product_detail: Product Detail Screen
 
 
-### Entities
+## Entities
 Entities represent the core objects of the application. In this app, the main entity is Product.
 
 **Product Entity**
 A Product entity has properties such as id, name, description, price, and imageUrl.
 
-### **Use Cases**
+## **Use Cases**
 Use cases encapsulate the business logic for each feature. The following use cases are defined:
 
   **-InsertProduct:** Adds a new product.
   **-UpdateProduct**: Updates an existing product.
   **-DeleteProduct**: Removes a product.
   **-GetProduct**: Retrieves the details of a product.
-### **Repositories**
+## **Repositories**
 Repositories handle data operations for entities and act as an intermediary between the data layer and domain layer.
 
   **- ProductRepository**
 A ProductRepository uses the defined use cases to perform CRUD operations on the Product entity.
 
-**Folder Structure**
+## **Folder Structure**
 The project is organized according to Clean Architecture principles:
 
 lib/  
@@ -94,8 +94,8 @@ lib/
 │               ├── detail_screen.dart  
 |               ├── add_product.dart  
 
-**Unit Testing**
+## **Unit Testing**
 Unit tests are written to ensure the correctness of models, use cases, and repositories. Tests are located in the test directory.
 
-**Conclusion**
+## **Conclusion**
 This documentation provides an overview of the eCommerce Mobile App's architecture, data flow, and navigation. By following Clean Architecture principles and employing TDD practices, the app is designed to be maintainable, scalable, and robust. The clear separation of concerns ensures that each layer of the application has a specific responsibility, making the codebase easier to manage and extend.
