@@ -10,6 +10,7 @@
     8. [Folder Structure](#folder-structure)  
     9. [Unit Testing](#unit-testing)  
     10. [Conclusion](#conclusion)  
+      
 **Introduction**
 This document provides an overview of the architecture, data flow, and navigation implementation for the eCommerce Mobile App built using Flutter. The app adheres to Clean Architecture principles and employs Test-Driven Development (TDD) practices. The core functionality includes CRUD operations for products, smooth navigation between screens, and effective data handling using repositories.
 
@@ -37,10 +38,10 @@ The data flow in the app follows a unidirectional pattern, ensuring a clear and 
     **- Data Layer: Repositories** retrieve data from local or remote data sources and return the data to the use cases.
    ** - Domain Layer**: Use cases return the processed data to the presentation layer.
     **- Presentation Layer**: The UI components display the data to the user.
-##Navigation
+### Navigation
 The app uses Flutter's built-in navigation methods and named routes to manage screen transitions.
 
-Screens
+**Screens**
 Home Screen: Displays a list of all products.
 Add/Edit Product Screen: Allows users to add or edit a product.
 Product Detail Screen: Displays the details of a selected product.
@@ -52,20 +53,20 @@ The following named routes are defined for navigation:
 /product_detail: Product Detail Screen
 
 
-##Entities
+### Entities
 Entities represent the core objects of the application. In this app, the main entity is Product.
 
 **Product Entity**
 A Product entity has properties such as id, name, description, price, and imageUrl.
 
-**Use Cases**
+### **Use Cases**
 Use cases encapsulate the business logic for each feature. The following use cases are defined:
 
   **-InsertProduct:** Adds a new product.
   **-UpdateProduct**: Updates an existing product.
   **-DeleteProduct**: Removes a product.
   **-GetProduct**: Retrieves the details of a product.
-**Repositories**
+### **Repositories**
 Repositories handle data operations for entities and act as an intermediary between the data layer and domain layer.
 
   **- ProductRepository**
@@ -74,23 +75,24 @@ A ProductRepository uses the defined use cases to perform CRUD operations on the
 **Folder Structure**
 The project is organized according to Clean Architecture principles:
 
-lib/
-├── core/
-│   └── error_handling.dart
-├── features/
-│   └── product/
-│       ├── data/
-│       │   └── models/
-│       │       └── product_model.dart
-│       ├── domain/
-│       │   └── entities/
-│       │       └── product.dart
-│       │   └── use_cases/
-│       │       └── insert_product.dart
-│       ├── presentation/
+lib/  
+├── core/  
+│   └── error_handling.dart  
+├── features/  
+│   └── product/  
+│       ├── data/  
+│       │   └── models/  
+│       │       └── product_model.dart  
+│       ├── domain/  
+│       │   └── entities/  
+│       │       └── product.dart  
+│       │   └── use_cases/  
+│       │       └── insert_product.dart  
+│       ├── presentation/  
 │           └── screens/
-│               ├── home_screen.dart
-│               ├── add_edit_product_screen.dart
+│               ├── home_screen.dart  
+│               ├── detail_screen.dart  
+|               ├── add_product.dart  
 
 **Unit Testing**
 Unit tests are written to ensure the correctness of models, use cases, and repositories. Tests are located in the test directory.
