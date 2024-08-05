@@ -17,35 +17,36 @@ This document provides an overview of the architecture, data flow, and navigatio
 ## **Architecture**
 The eCommerce Mobile App is structured following Clean Architecture principles, which ensures a clear separation of concerns, making the app more maintainable and scalable. The architecture is divided into three main layers:
 
-**Presentation Laye**r: Handles the UI and user interactions.
-**Domain Layer**: Contains the business logic and use cases.
-**Data Layer**: Manages data operations and repositories.
-**Presentation Layer**
+**Presentation Laye**r: Handles the UI and user interactions.  
+**Domain Layer**: Contains the business logic and use cases.  
+**Data Layer**: Manages data operations and repositories.  
+**Presentation Layer**  
 The presentation layer is responsible for displaying data to the user and handling user inputs. It includes the screens and their respective widgets, as well as the state management logic.
 
-**Domain Layer**
+**Domain Layer**  
 The domain layer contains the core business logic of the application. This includes entities, use cases, and repositories. Use cases are the application-specific business rules that encapsulate the business logic for each feature.
 
-**Data Layer**
+**Data Layer**   
 The data layer is responsible for data retrieval and persistence. It includes models, data sources, and repositories. Repositories act as a single source of truth for data, abstracting the details of data sources.
 
-## **Data Flow**
+## **Data Flow** 
 The data flow in the app follows a unidirectional pattern, ensuring a clear and predictable flow of data:
 
    ** - User Interaction**: The user interacts with the UI.
-    **- Presentation Layer**: The UI components dispatch events to the domain layer.
-    **- Domain Layer: Use cases** process the events and interact with repositories to fetch or manipulate data.
-    **- Data Layer: Repositories** retrieve data from local or remote data sources and return the data to the use cases.
-   ** - Domain Layer**: Use cases return the processed data to the presentation layer.
-    **- Presentation Layer**: The UI components display the data to the user.
-## Navigation
+    **- Presentation Layer**: The UI components dispatch events to the domain layer.  
+    **- Domain Layer: Use cases** process the events and interact with repositories to fetch or manipulate data.  
+    **- Data Layer: Repositories** retrieve data from local or remote data sources and return the data to the use cases.  
+   ** - Domain Layer**: Use cases return the processed data to the presentation layer.  
+    **- Presentation Layer**: The UI components display the data to the user.  
+## Navigation  
 The app uses Flutter's built-in navigation methods and named routes to manage screen transitions.
 
-**Screens**
-Home Screen: Displays a list of all products.
-Add/Edit Product Screen: Allows users to add or edit a product.
-Product Detail Screen: Displays the details of a selected product.
-Named Routes
+**Screens**  
+    **Home Screen**: Displays a list of all products.  
+    **Search screen**: allow user to search and filter products.  
+    **Add/Edit Product Screen**: Allows users to add or edit a product.  
+    **Product Detail Screen**: Displays the details of a selected product.  
+**Named Routes**
 The following named routes are defined for navigation:
 
 /home: Home Screen
@@ -93,6 +94,7 @@ lib/
 │               ├── home_screen.dart  
 │               ├── detail_screen.dart  
 |               ├── add_product.dart  
+|               ├── search.dart  
 
 ## **Unit Testing**
 Unit tests are written to ensure the correctness of models, use cases, and repositories. Tests are located in the test directory.
