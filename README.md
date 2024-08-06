@@ -4,7 +4,7 @@
     2. [Architecture](#architecture)  
     3. [Data Flow](#data-flow)  
     4. [Navigation](#navigation)  
-    5. [Screen record](#screen record)
+    5. [Screen record](#screen_record)  
     6. [Entities](#entities)  
     7. [Use Cases](#use-cases)  
     8. [Repositories](#repositories)  
