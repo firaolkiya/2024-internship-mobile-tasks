@@ -4,7 +4,7 @@
     2. [Architecture](#architecture)  
     3. [Data Flow](#data-flow)  
     4. [Navigation](#navigation)  
-    5. [Screen record](#screen_record)  
+    5. [Screen Record](#screen_record)  
     6. [Entities](#entities)  
     7. [Use Cases](#use-cases)  
     8. [Repositories](#repositories)  
@@ -54,7 +54,7 @@ The following named routes are defined for navigation:
 /add_edit_product: Add/Edit Product Screen  
 /product_detail: Product Detail Screen  
 
-## **screen record**  
+## **Screen Record**  
 https://github.com/user-attachments/assets/9251764f-dea1-4a20-99fd-295e062a2b5f
 
 
