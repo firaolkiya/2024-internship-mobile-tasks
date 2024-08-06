@@ -13,8 +13,8 @@ abstract class ProductLocalDataSource{
   Future<ProductModel> getProduct({required int id});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> insertProduct({required ProductModel product});
+  Future<String> insertProduct({required ProductModel productModel});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> updateProduct({required int id, required ProductModel product});
+  Future<String> updateProduct({required int id, required ProductModel productModel});
 }

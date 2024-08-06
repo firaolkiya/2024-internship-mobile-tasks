@@ -224,19 +224,19 @@ class MockProductLocalDataSource extends _i1.Mock
       ) as _i5.Future<_i3.ProductModel>);
 
   @override
-  _i5.Future<String> insertProduct({required _i3.ProductModel? product}) =>
+  _i5.Future<String> insertProduct({required _i3.ProductModel? productModel}) =>
       (super.noSuchMethod(
         Invocation.method(
           #insertProduct,
           [],
-          {#product: product},
+          {#productModel: productModel},
         ),
         returnValue: _i5.Future<String>.value(_i9.dummyValue<String>(
           this,
           Invocation.method(
             #insertProduct,
             [],
-            {#product: product},
+            {#productModel: productModel},
           ),
         )),
       ) as _i5.Future<String>);
@@ -244,7 +244,7 @@ class MockProductLocalDataSource extends _i1.Mock
   @override
   _i5.Future<String> updateProduct({
     required int? id,
-    required _i3.ProductModel? product,
+    required _i3.ProductModel? productModel,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -252,7 +252,7 @@ class MockProductLocalDataSource extends _i1.Mock
           [],
           {
             #id: id,
-            #product: product,
+            #productModel: productModel,
           },
         ),
         returnValue: _i5.Future<String>.value(_i9.dummyValue<String>(
@@ -262,7 +262,7 @@ class MockProductLocalDataSource extends _i1.Mock
             [],
             {
               #id: id,
-              #product: product,
+              #productModel: productModel,
             },
           ),
         )),
@@ -324,19 +324,19 @@ class MockProductRemoteDataSource extends _i1.Mock
       ) as _i5.Future<_i3.ProductModel>);
 
   @override
-  _i5.Future<String> insertProduct({required _i3.ProductModel? product}) =>
+  _i5.Future<String> insertProduct({required _i3.ProductModel? productModel}) =>
       (super.noSuchMethod(
         Invocation.method(
           #insertProduct,
           [],
-          {#product: product},
+          {#productModel: productModel},
         ),
         returnValue: _i5.Future<String>.value(_i9.dummyValue<String>(
           this,
           Invocation.method(
             #insertProduct,
             [],
-            {#product: product},
+            {#productModel: productModel},
           ),
         )),
       ) as _i5.Future<String>);
@@ -344,7 +344,7 @@ class MockProductRemoteDataSource extends _i1.Mock
   @override
   _i5.Future<String> updateProduct({
     required int? id,
-    required _i3.ProductModel? product,
+    required _i3.ProductModel? productModel,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -352,7 +352,7 @@ class MockProductRemoteDataSource extends _i1.Mock
           [],
           {
             #id: id,
-            #product: product,
+            #productModel: productModel,
           },
         ),
         returnValue: _i5.Future<String>.value(_i9.dummyValue<String>(
@@ -362,7 +362,7 @@ class MockProductRemoteDataSource extends _i1.Mock
             [],
             {
               #id: id,
-              #product: product,
+              #productModel: productModel,
             },
           ),
         )),
