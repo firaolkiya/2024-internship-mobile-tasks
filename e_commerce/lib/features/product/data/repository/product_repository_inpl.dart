@@ -103,7 +103,7 @@ class ProductRepositoryImpl extends ProductRepository{
         return  Right( await localDataSource.updateProduct(productModel: ProductModel.fromProduct(product),id: id));
       }
       } catch (e) {
-        return TInstance.temp;
+       return  Left(ServerFailure(message: 'unable to update'));
       }
      
      }
