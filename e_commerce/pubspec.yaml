@@ -14,16 +14,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+    
   cupertino_icons: ^1.0.6
+  dartz: ^0.10.1
+  get: ^4.6.6
+  flutter_lints: ^3.0.2
+  http: any
+      
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.0.5
+  build_runner: ^2.1.2
 
-  flutter_lints: ^4.0.0
-  get: ^4.6.5
+  
 
 
 flutter:
@@ -35,6 +40,7 @@ flutter:
   assets:
     - asset/shoes.jpeg
     - asset/fira.jpg
+    - asset/json/dummy_data.json
     
 
 

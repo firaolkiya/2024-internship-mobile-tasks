@@ -1,0 +1,10 @@
+{
+    "data": {
+      "id": 1,
+      "price": 19.99,
+      "imageUrl": "https://example.com/product1.jpg",
+      "name": "Product 1",
+      "description": "This is a description for Product 1."
+    }
+  }
+  
