@@ -4,12 +4,13 @@
     2. [Architecture](#architecture)  
     3. [Data Flow](#data-flow)  
     4. [Navigation](#navigation)  
-    5. [Entities](#entities)  
-    6. [Use Cases](#use-cases)  
-    7. [Repositories](#repositories)  
-    8. [Folder Structure](#folder-structure)  
-    9. [Unit Testing](#unit-testing)  
-    10. [Conclusion](#conclusion)  
+    5. [Screen record](#screen record)
+    6. [Entities](#entities)  
+    7. [Use Cases](#use-cases)  
+    8. [Repositories](#repositories)  
+    9. [Folder Structure](#folder-structure)  
+    10. [Unit Testing](#unit-testing)  
+    11. [Conclusion](#conclusion)  
       
 ## **Introduction**
 This document provides an overview of the architecture, data flow, and navigation implementation for the eCommerce Mobile App built using Flutter. The app adheres to Clean Architecture principles and employs Test-Driven Development (TDD) practices. The core functionality includes CRUD operations for products, smooth navigation between screens, and effective data handling using repositories.
@@ -53,7 +54,9 @@ The following named routes are defined for navigation:
 /add_edit_product: Add/Edit Product Screen  
 /product_detail: Product Detail Screen  
 
-[file:///home/firaol/Downloads/screen-20240806-154522_1%20(online-video-cutter.com)%20(2).mp4](url)
+## **screen record**  
+https://github.com/user-attachments/assets/9251764f-dea1-4a20-99fd-295e062a2b5f
+
 
 
 
