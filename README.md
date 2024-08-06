@@ -54,6 +54,10 @@ The following named routes are defined for navigation:
 /product_detail: Product Detail Screen
 
 
+file:///home/firaol/Downloads/screen-20240806-154522_1%20(online-video-cutter.com)%20(2).mp4
+
+
+
 ## Entities
 Entities represent the core objects of the application. In this app, the main entity is Product.
 
