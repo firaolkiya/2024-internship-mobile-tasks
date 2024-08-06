@@ -49,13 +49,9 @@ The app uses Flutter's built-in navigation methods and named routes to manage sc
 **Named Routes**
 The following named routes are defined for navigation:
 
-/home: Home Screen
-/add_edit_product: Add/Edit Product Screen
-/product_detail: Product Detail Screen
-
-
-file:///home/firaol/Downloads/screen-20240806-154522_1%20(online-video-cutter.com)%20(2).mp4
-
+/home: Home Screen  
+/add_edit_product: Add/Edit Product Screen  
+/product_detail: Product Detail Screen  
 
 
 ## Entities
