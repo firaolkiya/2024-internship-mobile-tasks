@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:e_commerce/core/utility/constant/local_data_info.dart';
@@ -27,20 +28,50 @@ void main() {
        
       setUp(
         () async{
+            List<String> encodedString = [];
+            for(ProductModel productModel in listOfProducts){
+                encodedString.add(json.encode(productModel.toJson()));
+            }
           final String tString = await readJson();
           when(()=>sharedPreferences.getStringList(product_key))
                   .thenReturn([tString]);
-          when(()=>sharedPreferences.setStringList(product_key,[tString]))
+          when(()=>sharedPreferences.setStringList(product_key,encodedString))
                   .thenAnswer((invocation) => Future.value(true),);
         },
       );
 
+        //get product
         test('should return product', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
             final result = await localDataSource.getProduct(id: '1');
             expect(result, isA<ProductModel>());
             
         });
+
+        //get all product
+        test('should return all product', () async{
+          // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
+            final result = await localDataSource.getAllProduct();
+            expect(result, isA<List<ProductModel>>());
+            
+        });
+
+
+        //insert all product
+        test('should return succuss message', () async{
+           final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
+            final result = await localDataSource.insertProduct(productModel: productModel);
+            expect(result, isA<String>());
+            
+        });
+
+        //delete product
+        test('should return success message', () {
+            final result =  localDataSource.deleteProduct(id: '1');
+            expect(result, isA<Future<String>>());
+            
+        });
+
 
         
        });

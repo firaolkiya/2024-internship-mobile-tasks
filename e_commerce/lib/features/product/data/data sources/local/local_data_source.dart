@@ -82,12 +82,13 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
     listOfProducts=[];
     if(productsCode!=null){
         for(String pCode in productsCode){
-           final ProductModel productModel = ProductModel.fromJson(json.decode(pCode));
+           final ProductModel productModel = ProductModel.fromJson(json.decode(pCode)['data']);
            listOfProducts.add(productModel);
           }
     }
     return listOfProducts;
     } catch (e) {
+    
       throw ServerFailure(message: e.toString());
     }
 
