@@ -50,7 +50,7 @@ class ProductRepositoryImpl extends ProductRepository{
         return  Right(ListConverter.toProductList(tempList) );
          }
         else{
-          List<ProductModel> tempList = await localDataSource.getAllProduct();
+          List<ProductModel> tempList = await localDataSource.getAllProduct()!;
            return  Right(ListConverter.toProductList(tempList) );
         }
       } catch (e) {
@@ -67,7 +67,7 @@ class ProductRepositoryImpl extends ProductRepository{
         return  Right( (await remoteDataSource.getProduct(id: id)).toProduct());
       }
       else{
-        return Right((await localDataSource.getProduct(id: id)).toProduct());
+        return Right((await localDataSource.getProduct(id: id))!.toProduct());
       }
       } catch (e) {
         return Left(ServerFailure(message: e.toString()));
