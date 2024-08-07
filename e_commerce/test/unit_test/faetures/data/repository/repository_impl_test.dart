@@ -26,7 +26,7 @@ void main() {
         repository = ProductRepositoryImpl(remoteDataSource: remoteDataSource,localDataSource: localDataSource, networkInfo: networkInfo);
     });  
     
-    final ProductModel productModel = ProductModel(id: 1, price: 10, imageUrl: 'hello', name: 'abdi', description: 'yeah');
+    final ProductModel productModel = ProductModel(id: '1', price: 10, imageUrl: 'hello', name: 'abdi', description: 'yeah');
 
     
 
@@ -52,7 +52,7 @@ void main() {
             test('should return succes message', () async { 
             when(remoteDataSource.deleteProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               ('successfully deleted'));
-            final result = await repository.deleteProduct(id: 1);
+            final result = await repository.deleteProduct(id: '1');
 
              verify(remoteDataSource.deleteProduct(id: anyNamed('id'))).called(1);
             expect(result, const Right('successfully deleted'));
@@ -65,7 +65,7 @@ void main() {
             test('should return succes message', () async { 
             when(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               ('successfully updated'));
-            final result = await repository.updateProduct(product: productModel.toProduct(),id: 1);
+            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
              verify(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
             expect(result, const Right('successfully updated'));
@@ -77,7 +77,7 @@ void main() {
             test('should return product', () async { 
             when(remoteDataSource.getProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               productModel);
-            final result = await repository.getProduct(id: 1);
+            final result = await repository.getProduct(id: '1');
 
              verify(remoteDataSource.getProduct(id: anyNamed('id'))).called(1);
             expect(result,  isA<Right<Failure,Product>>());
@@ -91,7 +91,7 @@ void main() {
               [productModel]);
             final result = await repository.getAllProduct();
 
-             verify(remoteDataSource.getAllProduct()).called(1);
+             verify(remoteDataSource.getAllProduct()).called('1');
             expect(result,  isA<Right<Failure,List<Product>>>());
             }
               );
@@ -116,7 +116,7 @@ void main() {
           group('delete product', () {
             test('should failed message', () async { 
             when(remoteDataSource.deleteProduct(id: anyNamed('id'))).thenThrow(ServerFailure(message: 'unable to delete'));
-            final result = await repository.deleteProduct(id: 1);
+            final result = await repository.deleteProduct(id: '1');
 
              verify(remoteDataSource.deleteProduct(id: anyNamed('id'))).called(1);
             expect(result, isA<Left<Failure,String>>());
@@ -128,7 +128,7 @@ void main() {
             test('should not updating message', () async { 
             when(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to update'));
-            final result = await repository.updateProduct(product: productModel.toProduct(),id: 1);
+            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
              verify(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
              expect(result, isA<Left<Failure,String>>());
@@ -141,7 +141,7 @@ void main() {
             test('should not return product', () async { 
             when(remoteDataSource.getProduct(id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to fetch dat'));
-            final result = await repository.getProduct(id: 1);
+            final result = await repository.getProduct(id: '1');
 
              verify(remoteDataSource.getProduct(id: anyNamed('id'))).called(1);
             expect(result, isA<Left<Failure,Product>>());
@@ -197,7 +197,7 @@ void main() {
             test('should return succes message', () async { 
             when(localDataSource.deleteProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               ('successfully deleted'));
-            final result = await repository.deleteProduct(id: 1);
+            final result = await repository.deleteProduct(id: '1');
 
              verify(localDataSource.deleteProduct(id: anyNamed('id'))).called(1);
             expect(result, const Right('successfully deleted'));
@@ -210,7 +210,7 @@ void main() {
             test('should return succes message', () async { 
             when(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               ('successfully updated'));
-            final result = await repository.updateProduct(product: productModel.toProduct(),id: 1);
+            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
              verify(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
             expect(result, const Right('successfully updated'));
@@ -222,7 +222,7 @@ void main() {
             test('should return product', () async { 
             when(localDataSource.getProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
               productModel);
-            final result = await repository.getProduct(id: 1);
+            final result = await repository.getProduct(id: '1');
 
              verify(localDataSource.getProduct(id: anyNamed('id'))).called(1);
             expect(result,  isA<Right<Failure,Product>>());
@@ -261,7 +261,7 @@ void main() {
           group('delete product', () {
             test('should failed message', () async { 
             when(localDataSource.deleteProduct(id: anyNamed('id'))).thenThrow(ServerFailure(message: 'unable to delete'));
-            final result = await repository.deleteProduct(id: 1);
+            final result = await repository.deleteProduct(id: '1');
 
              verify(localDataSource.deleteProduct(id: anyNamed('id'))).called(1);
             expect(result, isA<Left<Failure,String>>());
@@ -273,7 +273,7 @@ void main() {
             test('should not updating message', () async { 
             when(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to update'));
-            final result = await repository.updateProduct(product: productModel.toProduct(),id: 1);
+            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
              verify(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
              expect(result, isA<Left<Failure,String>>());
@@ -286,7 +286,7 @@ void main() {
             test('should not return product', () async { 
             when(localDataSource.getProduct(id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to fetch dat'));
-            final result = await repository.getProduct(id: 1);
+            final result = await repository.getProduct(id: '1');
 
              verify(localDataSource.getProduct(id: anyNamed('id'))).called(1);
             expect(result, isA<Left<Failure,Product>>());
@@ -334,15 +334,15 @@ void main() {
   //   test('should network info called', () async {
   //     when(networkInfo.isConnected)
   //     .thenAnswer((realInvocation) async=>true);
-  //     repository.getProduct(id: 1);
+  //     repository.getProduct(id: '1');
   //     verify(networkInfo.isConnected);
   //   });
   
   // test('should delete from source', () async {
-  //     when(remoteDataSource.deleteProduct(id: 1))
+  //     when(remoteDataSource.deleteProduct(id: '1'))
   //     .thenAnswer((realInvocation) async=>'succes');
       
-  //     final result = await repository.deleteProduct(id: 1);
+  //     final result = await repository.deleteProduct(id: '1');
   //     expect(result, equals(const Right('succes')));
   //   });
   
@@ -363,19 +363,19 @@ void main() {
   //   });
     
   //   test('should update from remote', () async {
-  //     when(remoteDataSource.updateProduct(id: 1,productModel: productModel))
+  //     when(remoteDataSource.updateProduct(id: '1',productModel: productModel))
   //     .thenAnswer((realInvocation) async=>'succes');
       
-  //     final result = await repository.updateProduct(id: 1,product: product);
+  //     final result = await repository.updateProduct(id: '1',product: product);
   //     expect(result, equals(const Right('succes')));
   //   });
 
 
   //  test('should  throws an exception', () async {
-  //     when(remoteDataSource.updateProduct(id: 1,productModel: productModel))
+  //     when(remoteDataSource.updateProduct(id: '1',productModel: productModel))
   //     .thenThrow(Exception());
       
-  //     final result = await repository.updateProduct(id: 1,product: product);
+  //     final result = await repository.updateProduct(id: '1',product: product);
   //     expect(result, TInstance.temp);
   //   });
 

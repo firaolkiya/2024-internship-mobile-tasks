@@ -1,6 +1,6 @@
 {
     "data": {
-      "id": 1,
+      "id": "1",
       "price": 19.99,
       "imageUrl": "https://example.com/product1.jpg",
       "name": "Product 1",

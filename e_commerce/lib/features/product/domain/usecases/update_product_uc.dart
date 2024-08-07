@@ -12,7 +12,7 @@ class UpdateProductUsecase{
 
   UpdateProductUsecase({required this.productRepository});
 
-  Future<Either<Failure,String>> execute({required int id,required Product product}) async{
+  Future<Either<Failure,String>> execute({required String id,required Product product}) async{
     return productRepository.updateProduct(id: id,product: product);
   }
    

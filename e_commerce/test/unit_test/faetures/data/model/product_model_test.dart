@@ -11,7 +11,7 @@ import '../../../../helper/read_json.dart';
 void main()  {
    TestWidgetsFlutterBinding.ensureInitialized();
    final productModel = ProductModel(
-    id: 1, 
+    id: '1', 
     price: 250,
      imageUrl: 'asset/image/shoes',
       name: 'shoes',

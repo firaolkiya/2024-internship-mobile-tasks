@@ -10,7 +10,7 @@ class GetProductUsecase{
 
   GetProductUsecase({required this.productRepository});
 
-  Future<Either<Failure, Product>> execute({required int id}) async{
+  Future<Either<Failure, Product>> execute({required String id}) async{
     return productRepository.getProduct(id: id);
   }
 }

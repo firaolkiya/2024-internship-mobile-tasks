@@ -1,13 +1,13 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/features/product/domain/entities/product.dart';
+import 'package:e_commerce/features/product/domain/usecases/insert_product.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 // ignore: depend_on_referenced_packages
 import 'package:mockito/mockito.dart';
 
-import '../../../../../lib/features/product/domain/entities/product.dart';
-import '../../../../../lib/features/product/domain/usecases/insert_product.dart';
-import '../../../../helper/product_mock_generator.mocks.dart';
+import '../../../../product_mock_generator.mocks.dart';
 
 void main() {
     
@@ -16,7 +16,7 @@ void main() {
 
 
 Product product = Product(
-  id: 1,
+  id: '1',
   price: 10, 
   imageUrl: 'usecase/main', 
   name: 'shoes', 

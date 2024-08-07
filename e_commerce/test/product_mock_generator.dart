@@ -7,6 +7,8 @@ import 'package:e_commerce/features/product/data/data%20sources/local/local_data
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart';
 import 'package:e_commerce/features/product/domain/repository/product_repository.dart';
 import 'package:mockito/annotations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 
 
@@ -16,7 +18,8 @@ import 'package:mockito/annotations.dart';
     ProductLocalDataSource,
     ProductRemoteDataSource,
     NetworkInfo,
-    NetworkConnectivityChecker
+    NetworkConnectivityChecker,
+    SharedPreferences
   ],
 )
 void main() {
