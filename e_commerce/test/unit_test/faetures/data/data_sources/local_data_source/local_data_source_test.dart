@@ -12,10 +12,11 @@ import '../../../../../helper/read_json.dart';
 
  class MocktailSharedPreference extends Mock implements SharedPreferences{}
 
+
+
 void main() {
     late MocktailSharedPreference sharedPreferences;
     late ProductLocalDataSourceImpl localDataSource;
-    
     setUp(() async {
       TestWidgetsFlutterBinding.ensureInitialized();
       sharedPreferences = MocktailSharedPreference();
@@ -84,7 +85,6 @@ void main() {
                 encodedString.add(json.encode(productModel.toJson()));
             }
           listOfProducts = [];
-          final String tString = await readJson();
           when(()=>sharedPreferences.getStringList(product_key))
                   .thenReturn([]);
           when(()=>sharedPreferences.setStringList(product_key,any()))
