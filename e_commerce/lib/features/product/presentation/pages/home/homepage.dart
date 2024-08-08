@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utility/constant/color.dart';
-import '../../../../../core/utility/constant/image.dart';
+import '../../../../../core/util/constant/color.dart';
+import '../../../../../core/util/constant/image.dart';
 import '../../widget/common/navigator_builder.dart';
 import '../../widget/common/product_card.dart';
 import '../addProduct/add_product.dart';
@@ -28,7 +28,6 @@ class Homepage extends StatelessWidget {
                 var twin = Tween<Offset>(begin: begin,end: end).chain(CurveTween(curve: curve));
                 return SlideTransition(position: animation.drive(twin),
                 child: child );
-
               },
               pageBuilder: (context, animation, secondaryAnimation) => const AddProduct(),)
           );

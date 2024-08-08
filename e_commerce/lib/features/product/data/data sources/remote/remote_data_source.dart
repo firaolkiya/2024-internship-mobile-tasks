@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../../../../core/error/failures/failures.dart';
+import '../../../../../core/util/constant/remote_data_info.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductRemoteDataSource{
@@ -43,7 +44,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getAllProduct()async {
-      final response =await client.get(Uri.parse('http:/peoduct/items/'));
+      final response =await client.get(Uri.parse(RemoteDataInfo.baseUrl));
       if(response.statusCode!=200){
         throw NetworkFailure();
       }
@@ -52,7 +53,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       for(dynamic item in js){
           pList.add(ProductModel.fromJson(item));
       }
-
+      
       return Future.value(pList);
       
 

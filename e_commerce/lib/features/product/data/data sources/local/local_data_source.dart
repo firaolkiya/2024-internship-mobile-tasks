@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/error/failures/failures.dart';
-import '../../../../../core/utility/constant/local_data_info.dart';
+import '../../../../../core/util/constant/local_data_info.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductLocalDataSource{

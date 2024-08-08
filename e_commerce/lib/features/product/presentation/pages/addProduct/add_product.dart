@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utility/constant/color.dart';
-import '../../../../../core/utility/constant/spacing.dart';
+import '../../../../../core/util/constant/color.dart';
+import '../../../../../core/util/constant/spacing.dart';
 import '../../widget/common/text_feild.dart';
 
 class AddProduct extends StatelessWidget {

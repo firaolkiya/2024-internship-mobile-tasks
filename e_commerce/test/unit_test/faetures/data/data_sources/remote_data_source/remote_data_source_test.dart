@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:e_commerce/core/error/failures/failures.dart';
+import 'package:e_commerce/core/util/constant/remote_data_info.dart';
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart';
 import 'package:e_commerce/features/product/data/model/product_model.dart';
 import 'package:flutter/widgets.dart';
@@ -74,11 +75,13 @@ void main() {
   test('should return list of products', ()async {
       final Map<String,dynamic> js =json.decode(await readJson())['data'];
       final products = [js];
-       when(httpClient.get(Uri.parse('http:/peoduct/items/')))
+       when(httpClient.get(Uri.parse(RemoteDataInfo.baseUrl)))
        .thenAnswer((realInvocation) async => http.Response(json.encode(products),200));
       
       final result = await remoteDataSource.getAllProduct();
-      verify(httpClient.get(Uri.parse('http:/peoduct/items/')));
+      verify(httpClient.get(Uri.parse(RemoteDataInfo.baseUrl)));
+
+      print(result.toString());
 
       expect(result, isA<List<ProductModel>>());
 
@@ -146,7 +149,7 @@ void main() {
        when(httpClient.get(Uri.parse('http:/peoduct/items/')))
        .thenAnswer((realInvocation) async => http.Response('error',404));
       
-      final call = await remoteDataSource.getAllProduct;
+      final call = remoteDataSource.getAllProduct;
 
       expect(()=>call(), throwsA(isA<NetworkFailure>()));
       verify(httpClient.get(Uri.parse('http:/peoduct/items/')));

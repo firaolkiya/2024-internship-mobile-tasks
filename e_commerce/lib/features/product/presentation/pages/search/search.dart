@@ -6,11 +6,9 @@ import '../detail/detail.dart';
 
 class SearchItem extends StatelessWidget {
   const SearchItem({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         title: const Text('Search'),
         centerTitle: true,
@@ -20,7 +18,7 @@ class SearchItem extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back_ios)),
             bottom:const  PreferredSize(
-            
+
               preferredSize: Size(double.infinity, 60), 
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),

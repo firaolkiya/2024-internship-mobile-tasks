@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../core/utility/constant/image.dart';
-import '../../../../../core/utility/constant/string.dart';
+import '../../../../../core/util/constant/image.dart';
+import '../../../../../core/util/constant/string.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key});
@@ -110,7 +110,7 @@ class NumberCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => 
        InkWell(
-        overlayColor: const MaterialStatePropertyAll(Colors.black12),
+        overlayColor: const WidgetStatePropertyAll(Colors.black12),
         focusColor: Colors.lightBlueAccent,
         onTap: (){controller.selectedIndex.value=i;},
       
