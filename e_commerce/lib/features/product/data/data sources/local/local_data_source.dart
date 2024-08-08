@@ -10,21 +10,19 @@ import '../../model/product_model.dart';
 abstract class ProductLocalDataSource{
 
    ///it return string as response if success otherwise throws an exception
-  Future<String> deleteProduct({required String id});
-
-  
+  Future<bool> deleteCache({required String id});
 
   ///it return List<ProductModel> as response if success otherwise throws an exception
-  Future<List<ProductModel>>? getAllProduct() ;
+  Future<List<ProductModel>>? getAllCache() ;
 
   ///it return ProductModel as response if success otherwise throws an exception
   Future<ProductModel>? getProduct({required String id});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> insertProduct({required ProductModel productModel});
+  Future<bool> insertProductToCach({required ProductModel productModel});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> updateProduct({required String id, required ProductModel productModel});
+  Future<bool> updateCache({required String id, required ProductModel productModel});
 }
 
 
@@ -38,7 +36,7 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
 
   
   ///save data into sharedPreferences
-  Future<void> saveData()async {
+  Future<void> saveDataLocally()async {
 
     try {
       List<String> encodedString = [];
@@ -49,14 +47,14 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
         sharedPreferences.setStringList(product_key, encodedString);
       }
     } catch (e) {
-      throw ServerFailure(message: e.toString());
+      throw CachFailure(message: e.toString());
     }
   }
 
 
 
   @override
-  Future<String> deleteProduct({required String id}) {
+  Future<bool> deleteCache({required String id}) {
     try {
       List<ProductModel>tempList = [];
       for(ProductModel productModel in listOfProducts){
@@ -65,18 +63,18 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
         }
       }
       if(tempList.length<listOfProducts.length){
-          saveData();
-          return Future.value('succesfully deleted');
+          saveDataLocally();
+          return Future.value(true);
       }
-      return Future.value('No such item found');
+      return Future.value(false);
     } catch (e) {
-      throw ServerFailure(message: e.toString());
+      throw CachFailure(message: e.toString());
     }
   }
 
 
   @override
-  Future<List<ProductModel>> getAllProduct() async{
+  Future<List<ProductModel>> getAllCache() async{
     try {
     final List<String>? productsCode = sharedPreferences.getStringList(product_key);
     listOfProducts=[];
@@ -89,7 +87,7 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
     return listOfProducts;
     } catch (e) {
     
-      throw ServerFailure(message: e.toString());
+      throw CachFailure(message: e.toString());
     }
 
     
@@ -105,43 +103,43 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
       }
       return null;
     } catch (e) {
-      throw ServerFailure(message: e.toString());
+      throw CachFailure(message: e.toString());
     }
   }
 
 
 
     @override
-    Future<String> insertProduct({required ProductModel productModel}) {
+    Future<bool> insertProductToCach({required ProductModel productModel}) {
       try {
           
           for(ProductModel pModel in listOfProducts){
             if(productModel.id==pModel.id){
-              return Future.value('Product with this id already exist');
+              return Future.value(true);
             }
           }
           listOfProducts.add(productModel);
-          saveData();
-          return Future.value('succesfully inserted');
+          saveDataLocally();
+          return Future.value(false);
       } catch (e) {
-        throw ServerFailure(message: 'unable to insert element');
+        throw CachFailure(message: 'unable to insert element');
       }
     }
 
 
 
   @override
-  Future<String> updateProduct({required String id, required ProductModel productModel}) {
+  Future<bool> updateCache({required String id, required ProductModel productModel}) {
     for(int i =0;i<listOfProducts.length;i++){
       if(listOfProducts[i].id==id){
         listOfProducts[i]=productModel;
-        saveData();
-        return Future.value('successfully updated');
+        saveDataLocally();
+        return Future.value(true);
       }
     }
     listOfProducts.add(productModel);
-    saveData();
-    return Future.value('successfully updated');
+    saveDataLocally();
+    return Future.value(true);
   }
   
 }

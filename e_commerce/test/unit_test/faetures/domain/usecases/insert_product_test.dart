@@ -26,7 +26,7 @@ Product product = Product(
     test('should call product repository', () async{
            when(mockProductRepository
                   .insertProduct(product: product))
-                    .thenAnswer((realInvocation) async => const Right('added succesfully'));
+                    .thenAnswer((realInvocation) async => const Right(true));
 
            final response = await insertProductUsecase.execute(product);
  

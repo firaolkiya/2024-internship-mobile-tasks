@@ -13,7 +13,7 @@ class ConnectionFailure extends Failure{
   ConnectionFailure({required super.message});
   
 }
-class DatabaseFailure extends Failure{
-  DatabaseFailure({required super.message});
+class CachFailure extends Failure{
+  CachFailure({required super.message});
   
 }

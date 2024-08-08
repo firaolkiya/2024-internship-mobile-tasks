@@ -51,7 +51,7 @@ void main() {
         //get all product
         test('should return all product', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.getAllProduct();
+            final result = await localDataSource.getAllCache();
             expect(result, isA<List<ProductModel>>());
             
         });
@@ -60,19 +60,17 @@ void main() {
         //insert all product
         test('should return succuss message', () async{
            final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.insertProduct(productModel: productModel);
-            expect(result, isA<String>());
+            final result = await localDataSource.insertProductToCach(productModel: productModel);
+            expect(result, true);
             
         });
 
         //delete product
-        test('should return success message', () {
-            final result =  localDataSource.deleteProduct(id: '1');
-            expect(result, isA<Future<String>>());
+        test('should return success message',   () {
+            final result =  localDataSource.deleteCache(id: '1');
+            expect(result, true);
             
         });
-
-
         
        });
 

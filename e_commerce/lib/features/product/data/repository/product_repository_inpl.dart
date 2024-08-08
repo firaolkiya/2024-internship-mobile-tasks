@@ -26,16 +26,18 @@ class ProductRepositoryImpl extends ProductRepository{
     
     
   @override
-  Future<Either<Failure, String>> deleteProduct({required String id}) async{
+  Future<Either<Failure, bool>> deleteProduct({required String id}) async{
       try {
         if ( await networkInfo.isConnected) {
           return  Right( await remoteDataSource.deleteProduct(id: id));
         }
         else{
-          return  Right( await localDataSource.deleteProduct(id: id));
+          return  Right( await localDataSource.deleteCache(id: id));
         }
         
       } catch (e) {
+        print(e.toString());
+        print('=====================');
         return Left(ServerFailure(message: e.toString()));
       }
      
@@ -50,10 +52,12 @@ class ProductRepositoryImpl extends ProductRepository{
         return  Right(ListConverter.toProductList(tempList) );
          }
         else{
-          List<ProductModel> tempList = await localDataSource.getAllProduct()!;
+          List<ProductModel> tempList = await localDataSource.getAllCache()!;
            return  Right(ListConverter.toProductList(tempList) );
         }
       } catch (e) {
+        print(e.toString());
+        print('=====================');
         return Left(ServerFailure(message: e.toString()));
       }
      
@@ -70,6 +74,8 @@ class ProductRepositoryImpl extends ProductRepository{
         return Right((await localDataSource.getProduct(id: id))!.toProduct());
       }
       } catch (e) {
+        print(e.toString());
+        print('=====================');
         return Left(ServerFailure(message: e.toString()));
       }
      
@@ -77,13 +83,13 @@ class ProductRepositoryImpl extends ProductRepository{
   
 
   @override
-  Future<Either<Failure, String>> insertProduct({required Product product}) async{
+  Future<Either<Failure, bool>> insertProduct({required Product product}) async{
     try {
         if(await networkInfo.isConnected){
         return  Right( await remoteDataSource.insertProduct(productModel: ProductModel.fromProduct(product)));
         }
         else{
-          return Right(await localDataSource.insertProduct(productModel:ProductModel.fromProduct(product)));
+          return Right(await localDataSource.insertProductToCach(productModel:ProductModel.fromProduct(product)));
         }
       } catch (e) {
         return Left(ServerFailure(message: e.toString()));
@@ -93,14 +99,14 @@ class ProductRepositoryImpl extends ProductRepository{
   
 
   @override
-  Future<Either<Failure, String>> updateProduct({required String id, required Product product}) async{
+  Future<Either<Failure, bool>> updateProduct({required String id, required Product product}) async{
     try {
       if(await networkInfo.isConnected){
 
         return  Right( await remoteDataSource.updateProduct(id: id,productModel: ProductModel.fromProduct(product)));
       }
       else{
-        return  Right( await localDataSource.updateProduct(productModel: ProductModel.fromProduct(product),id: id));
+        return  Right( await localDataSource.updateCache(productModel: ProductModel.fromProduct(product),id: id));
       }
       } catch (e) {
        return  Left(ServerFailure(message: 'unable to update'));

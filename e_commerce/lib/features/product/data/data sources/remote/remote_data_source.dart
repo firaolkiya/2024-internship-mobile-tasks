@@ -3,7 +3,7 @@ import '../../model/product_model.dart';
 
 abstract class ProductRemoteDataSource{
    ///it return string as response if success otherwise throws an exception
-  Future<String> deleteProduct({required String id});
+  Future<bool> deleteProduct({required String id});
 
   ///it return List<ProductModel> as response if success otherwise throws an exception
   Future<List<ProductModel>> getAllProduct() ;
@@ -12,9 +12,9 @@ abstract class ProductRemoteDataSource{
   Future<ProductModel> getProduct({required String id});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> insertProduct({required ProductModel productModel});
+  Future<bool> insertProduct({required ProductModel productModel});
 
   ///it return string as response if success otherwise throws an exception
-  Future<String> updateProduct({required String id, required ProductModel productModel});
+  Future<bool> updateProduct({required String id, required ProductModel productModel});
 
 }

@@ -38,11 +38,11 @@ void main() {
          group('insert product', () {
             test('should return succes message', () async { 
             when(remoteDataSource.insertProduct(productModel: anyNamed('productModel'))).thenAnswer((realInvocation) async=> 
-              ('successfully added'));
+              (true));
             final result = await repository.insertProduct(product: productModel.toProduct());
 
              verify(remoteDataSource.insertProduct(productModel: anyNamed('productModel'))).called(1);
-            expect(result, const Right('successfully added'));
+            expect(result, const Right(true));
 
             }
               );
@@ -51,11 +51,11 @@ void main() {
           group('delete product', () {
             test('should return succes message', () async { 
             when(remoteDataSource.deleteProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
-              ('successfully deleted'));
+              (true));
             final result = await repository.deleteProduct(id: '1');
 
              verify(remoteDataSource.deleteProduct(id: anyNamed('id'))).called(1);
-            expect(result, const Right('successfully deleted'));
+            expect(result, const Right(true));
 
             }
               );
@@ -64,11 +64,11 @@ void main() {
           group('update product', () {
             test('should return succes message', () async { 
             when(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
-              ('successfully updated'));
+              (true));
             final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
              verify(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
-            expect(result, const Right('successfully updated'));
+            expect(result, const Right(true));
             }
               );
           });
@@ -91,7 +91,7 @@ void main() {
               [productModel]);
             final result = await repository.getAllProduct();
 
-             verify(remoteDataSource.getAllProduct()).called('1');
+             verify(remoteDataSource.getAllProduct()).called(1);
             expect(result,  isA<Right<Failure,List<Product>>>());
             }
               );
@@ -107,7 +107,7 @@ void main() {
             final result = await repository.insertProduct(product: productModel.toProduct());
 
              verify(remoteDataSource.insertProduct(productModel: anyNamed('productModel'))).called(1);
-            expect(result, isA<Left<Failure,String>>());
+            expect(result, isA<Left<Failure,bool>>());
 
             }
               );
@@ -119,7 +119,7 @@ void main() {
             final result = await repository.deleteProduct(id: '1');
 
              verify(remoteDataSource.deleteProduct(id: anyNamed('id'))).called(1);
-            expect(result, isA<Left<Failure,String>>());
+            expect(result, isA<Left<Failure,bool>>());
             }
               );
           });
@@ -128,10 +128,11 @@ void main() {
             test('should not updating message', () async { 
             when(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to update'));
-            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
+            final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
+            
              verify(remoteDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
-             expect(result, isA<Left<Failure,String>>());
+             expect(result, isA<Left<Failure,bool>>());
 
             }
               );
@@ -182,12 +183,12 @@ void main() {
          
          group('insert product', () {
             test('should return succes message', () async { 
-            when(localDataSource.insertProduct(productModel: anyNamed('productModel'))).thenAnswer((realInvocation) async=> 
-              ('successfully added'));
+            when(localDataSource.insertProductToCach(productModel: anyNamed('productModel'))).thenAnswer((realInvocation) async=> 
+              (true));
             final result = await repository.insertProduct(product: productModel.toProduct());
 
-             verify(localDataSource.insertProduct(productModel: anyNamed('productModel'))).called(1);
-            expect(result, const Right('successfully added'));
+             verify(localDataSource.insertProductToCach(productModel: anyNamed('productModel'))).called(1);
+            expect(result, const Right(true));
 
             }
               );
@@ -195,12 +196,12 @@ void main() {
 
           group('delete product', () {
             test('should return succes message', () async { 
-            when(localDataSource.deleteProduct(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
-              ('successfully deleted'));
+            when(localDataSource.deleteCache(id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
+              (true));
             final result = await repository.deleteProduct(id: '1');
 
-             verify(localDataSource.deleteProduct(id: anyNamed('id'))).called(1);
-            expect(result, const Right('successfully deleted'));
+             verify(localDataSource.deleteCache(id: anyNamed('id'))).called(1);
+            expect(result, const Right(true));
 
             }
               );
@@ -208,12 +209,12 @@ void main() {
 
           group('update product', () {
             test('should return succes message', () async { 
-            when(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
-              ('successfully updated'));
+            when(localDataSource.updateCache(productModel: anyNamed('productModel'),id: anyNamed('id'))).thenAnswer((realInvocation) async=> 
+              (true));
             final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
-             verify(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
-            expect(result, const Right('successfully updated'));
+             verify(localDataSource.updateCache(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
+            expect(result, const Right(true));
             }
               );
           });
@@ -232,11 +233,11 @@ void main() {
 
           group('get all product', () {
             test('should return list of prduct', () async { 
-            when(localDataSource.getAllProduct()).thenAnswer((realInvocation) async=> 
+            when(localDataSource.getAllCache()).thenAnswer((realInvocation) async=> 
               [productModel]);
             final result = await repository.getAllProduct();
 
-             verify(localDataSource.getAllProduct()).called(1);
+             verify(localDataSource.getAllCache()).called(1);
             expect(result,  isA<Right<Failure,List<Product>>>());
             }
               );
@@ -247,12 +248,12 @@ void main() {
       group('when failed fetched data from api', () { 
          group('insert product', () {
             test('should return failed message', () async { 
-            when(localDataSource.insertProduct(productModel: anyNamed('productModel')))
+            when(localDataSource.insertProductToCach(productModel: anyNamed('productModel')))
             .thenThrow(ServerFailure(message: 'unable to insert data'));
             final result = await repository.insertProduct(product: productModel.toProduct());
 
-             verify(localDataSource.insertProduct(productModel: anyNamed('productModel'))).called(1);
-            expect(result, isA<Left<Failure,String>>());
+             verify(localDataSource.insertProductToCach(productModel: anyNamed('productModel'))).called(1);
+            expect(result, isA<Left<Failure,bool>>());
 
             }
               );
@@ -260,23 +261,23 @@ void main() {
 
           group('delete product', () {
             test('should failed message', () async { 
-            when(localDataSource.deleteProduct(id: anyNamed('id'))).thenThrow(ServerFailure(message: 'unable to delete'));
+            when(localDataSource.deleteCache(id: anyNamed('id'))).thenThrow(ServerFailure(message: 'unable to delete'));
             final result = await repository.deleteProduct(id: '1');
 
-             verify(localDataSource.deleteProduct(id: anyNamed('id'))).called(1);
-            expect(result, isA<Left<Failure,String>>());
+             verify(localDataSource.deleteCache(id: anyNamed('id'))).called(1);
+            expect(result, isA<Left<Failure,bool>>());
             }
               );
           });
 
           group('update product', () {
             test('should not updating message', () async { 
-            when(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id')))
+            when(localDataSource.updateCache(productModel: anyNamed('productModel'),id: anyNamed('id')))
             .thenThrow(ServerFailure(message: 'unable to update'));
             final result = await repository.updateProduct(product: productModel.toProduct(),id: '1');
 
-             verify(localDataSource.updateProduct(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
-             expect(result, isA<Left<Failure,String>>());
+             verify(localDataSource.updateCache(productModel: anyNamed('productModel'),id: anyNamed('id'))).called(1);
+             expect(result, isA<Left<Failure,bool>>());
 
             }
               );
@@ -297,11 +298,11 @@ void main() {
 
           group('get all product', () {
             test('should not return any prduct', () async { 
-            when(localDataSource.getAllProduct())
+            when(localDataSource.getAllCache())
             .thenThrow(ServerFailure(message: 'unable to fetch data from the server'));
             final result = await repository.getAllProduct();
 
-             verify(localDataSource.getAllProduct()).called(1);
+             verify(localDataSource.getAllCache()).called(1);
              expect(result, isA<Left<Failure,List<Product>>>());
 
             }
