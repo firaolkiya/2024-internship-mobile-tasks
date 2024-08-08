@@ -36,7 +36,7 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
 
   
   ///save data into sharedPreferences
-  Future<void> saveDataLocally()async {
+  Future<bool> saveDataLocally()async {
 
     try {
       List<String> encodedString = [];
@@ -44,9 +44,12 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
           encodedString.add(json.encode(productModel.toJson()));
       }
       if(encodedString!=null){
-        sharedPreferences.setStringList(product_key, encodedString);
+        return sharedPreferences.setStringList(product_key, encodedString);
       }
+      return Future.value(false);
     } catch (e) {
+      print(e.toString());
+      print('+++++++++++++++++++++++');
       throw CachFailure(message: e.toString());
     }
   }
@@ -115,12 +118,11 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
           
           for(ProductModel pModel in listOfProducts){
             if(productModel.id==pModel.id){
-              return Future.value(true);
+              return Future.value(false);
             }
           }
           listOfProducts.add(productModel);
-          saveDataLocally();
-          return Future.value(false);
+          return  saveDataLocally();
       } catch (e) {
         throw CachFailure(message: 'unable to insert element');
       }

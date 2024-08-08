@@ -11,6 +11,8 @@ class ProductModel extends Product {
       required super.description}
       );
 
+      
+
   
   factory ProductModel.fromProduct(Product product)=>
            ProductModel(id: product.id, price: product.price, imageUrl: product.imageUrl, name: product.name, description: product.description);
