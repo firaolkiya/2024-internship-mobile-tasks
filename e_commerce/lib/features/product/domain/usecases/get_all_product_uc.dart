@@ -1,8 +1,8 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failures/failurs.dart';
-import '../entities/product.dart';
+import '../../../../core/error/failures/failures.dart';
+import '../entities/product_entity.dart';
 import '../repository/product_repository.dart';
 
 class GetAllProductUsecase{
@@ -10,7 +10,7 @@ class GetAllProductUsecase{
 
   GetAllProductUsecase({required this.productRepository});
 
-  Future<Either<Failure,List<Product>>> execute() async{
+  Future<Either<Failure,List<ProductEntity>>> execute() async{
       return await productRepository.getAllProduct();
   }
    

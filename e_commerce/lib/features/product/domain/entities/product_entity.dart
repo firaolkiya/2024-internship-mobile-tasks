@@ -1,10 +1,10 @@
-class Product{
+class ProductEntity{
     
      String id;
      double price;
      String imageUrl,name,description;
 
-  Product({required this.id,
+  ProductEntity({required this.id,
            required this.price,
           required this.imageUrl, 
            required this.name, 

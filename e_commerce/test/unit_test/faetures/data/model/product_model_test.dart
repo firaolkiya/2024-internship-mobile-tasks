@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:e_commerce/features/product/data/model/product_model.dart';
-import 'package:e_commerce/features/product/domain/entities/product.dart';
+import 'package:e_commerce/features/product/domain/entities/product_entity.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 
@@ -20,7 +20,7 @@ void main()  {
 
     test('should sub class of the product class',
      () async{
-       expect(productModel, isA<Product>());
+       expect(productModel, isA<ProductEntity>());
     });
        
        
@@ -32,7 +32,7 @@ void main()  {
       final Map<String,dynamic>jsobject =  await json.decode(jsonA)['data'];
          final pr = ProductModel.fromJson(jsobject);
 
-          expect(pr, isA<Product>());
+          expect(pr, isA<ProductEntity>());
          
     });
     final jsons = {

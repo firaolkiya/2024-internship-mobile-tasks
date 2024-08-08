@@ -1,8 +1,8 @@
 
 
-import '../../domain/entities/product.dart';
+import '../../domain/entities/product_entity.dart';
 
-class ProductModel extends Product {
+class ProductModel extends ProductEntity {
   ProductModel(
       {required super.id,
       required super.price,
@@ -12,11 +12,18 @@ class ProductModel extends Product {
       );
 
       
+  ///generate [ProductModel] from product entity
+  factory ProductModel.fromProduct(ProductEntity product)=>
+           ProductModel(id: product.id,
+             price: product.price, 
+             imageUrl: product.imageUrl,
+             name: product.name, 
+             description: product.description
+             );
+  
 
-  
-  factory ProductModel.fromProduct(Product product)=>
-           ProductModel(id: product.id, price: product.price, imageUrl: product.imageUrl, name: product.name, description: product.description);
-  
+
+  ///generate [ProductModel] from [json] decoded object
   factory ProductModel.fromJson(Map<String,dynamic>jsonObject) =>
            ProductModel(
             id: jsonObject['id'],
@@ -26,7 +33,8 @@ class ProductModel extends Product {
             price: jsonObject['price']
     );
 
-    
+  
+  ///generate json object from [ProductModel] instance
     Map<String, dynamic> toJson( )=>
                 {'id': id,
                   'name': name,
@@ -34,7 +42,14 @@ class ProductModel extends Product {
                   'description': description,
                   'imageUrl': imageUrl
                 };
-    Product toProduct()=>Product(id: id, price: price, imageUrl: imageUrl, name: name, description: description);
+  ///generete [ProductEntity] from instance of [ProjectModel]
+    ProductEntity toProductEntity()=>ProductEntity(
+              id: id, 
+              price: price,
+              imageUrl: imageUrl,
+              name: name, 
+              description: description
+              );
   
   
 }

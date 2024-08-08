@@ -44,7 +44,7 @@ void main() {
         //get product
         test('should return product', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.getProduct(id: '1');
+            final result = await localDataSource.getProductFromCach(id: '1');
             expect(result, isA<ProductModel>());
             
         });
@@ -52,7 +52,7 @@ void main() {
         //get all product
         test('should return all product', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.getAllCache();
+            final result = await localDataSource.getAllFromCach();
             expect(result, isA<List<ProductModel>>());
             
         });
@@ -69,7 +69,7 @@ void main() {
 
         //delete product
         test('should return success message',   () async {
-            final result = await  localDataSource.deleteCache(id: '1');
+            final result = await  localDataSource.removeFromCach(id: '1');
             expect(result, true);
             
         });
@@ -95,7 +95,7 @@ void main() {
         //get product
         test('should return product', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.getProduct(id: '2');
+            final result = await localDataSource.getProductFromCach(id: '2');
             expect(result, null);
             
         });
@@ -103,7 +103,7 @@ void main() {
         //get all product
         test('should return  null', () async{
           // final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            final result = await localDataSource.getAllCache();
+            final result = await localDataSource.getAllFromCach();
             verify(()=>sharedPreferences.getStringList(product_key)).called(1);
             expect(result, []);
             
@@ -120,7 +120,7 @@ void main() {
 
         //delete product
         test('should return success message',   () async {
-            final result = await  localDataSource.deleteCache(id: '1');
+            final result = await  localDataSource.removeFromCach(id: '1');
             expect(result, false);
             
         });

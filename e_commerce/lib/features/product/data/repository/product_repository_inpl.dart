@@ -2,9 +2,9 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/device/network_info/network_info.dart';
-import '../../../../core/error/failures/failurs.dart';
+import '../../../../core/error/failures/failures.dart';
 import '../../../../core/helper/converter/model_to_product_list.dart';
-import '../../domain/entities/product.dart';
+import '../../domain/entities/product_entity.dart';
 import '../../domain/repository/product_repository.dart';
 import '../data sources/local/local_data_source.dart';
 import '../data sources/remote/remote_data_source.dart';
@@ -32,19 +32,16 @@ class ProductRepositoryImpl extends ProductRepository{
           return  Right( await remoteDataSource.deleteProduct(id: id));
         }
         else{
-          return  Right( await localDataSource.deleteCache(id: id));
+          return  Right( await localDataSource.removeFromCach(id: id));
         }
-        
       } catch (e) {
-        print(e.toString());
-        print('=====================');
-        return Left(ServerFailure(message: e.toString()));
+        return Left(ServerFailure());
       }
      
      }
 
   @override
-  Future<Either<Failure, List<Product>>> getAllProduct() async{
+  Future<Either<Failure, List<ProductEntity>>> getAllProduct() async{
     try {
       if(await networkInfo.isConnected){
 
@@ -52,38 +49,35 @@ class ProductRepositoryImpl extends ProductRepository{
         return  Right(ListConverter.toProductList(tempList) );
          }
         else{
-          List<ProductModel> tempList = await localDataSource.getAllCache()!;
+          List<ProductModel> tempList = await localDataSource.getAllFromCach()!;
            return  Right(ListConverter.toProductList(tempList) );
         }
       } catch (e) {
-        print(e.toString());
-        print('=====================');
-        return Left(ServerFailure(message: e.toString()));
+        return Left(ServerFailure());
       }
      
      }
   
 
   @override
-  Future<Either<Failure, Product>> getProduct({required String id}) async{
+  Future<Either<Failure, ProductEntity>> getProduct({required String id}) async{
     try {
       if(await networkInfo.isConnected){
-        return  Right( (await remoteDataSource.getProduct(id: id)).toProduct());
+        return  Right( (await remoteDataSource.getProduct(id: id)).toProductEntity());
       }
       else{
-        return Right((await localDataSource.getProduct(id: id))!.toProduct());
+        return Right((await localDataSource.getProductFromCach(id: id))!.toProductEntity());
       }
       } catch (e) {
-        print(e.toString());
-        print('=====================');
-        return Left(ServerFailure(message: e.toString()));
+    
+        return Left(ServerFailure());
       }
      
      }
   
 
   @override
-  Future<Either<Failure, bool>> insertProduct({required Product product}) async{
+  Future<Either<Failure, bool>> insertProduct({required ProductEntity product}) async{
     try {
         if(await networkInfo.isConnected){
         return  Right( await remoteDataSource.insertProduct(productModel: ProductModel.fromProduct(product)));
@@ -92,24 +86,24 @@ class ProductRepositoryImpl extends ProductRepository{
           return Right(await localDataSource.insertProductToCach(productModel:ProductModel.fromProduct(product)));
         }
       } catch (e) {
-        return Left(ServerFailure(message: e.toString()));
+        return Left(ServerFailure());
       }
      
      }
   
 
   @override
-  Future<Either<Failure, bool>> updateProduct({required String id, required Product product}) async{
+  Future<Either<Failure, bool>> updateProduct({required String id, required ProductEntity product}) async{
     try {
       if(await networkInfo.isConnected){
 
         return  Right( await remoteDataSource.updateProduct(id: id,productModel: ProductModel.fromProduct(product)));
       }
       else{
-        return  Right( await localDataSource.updateCache(productModel: ProductModel.fromProduct(product),id: id));
+        return  Right( await localDataSource.updateOnCache(productModel: ProductModel.fromProduct(product),id: id));
       }
       } catch (e) {
-       return  Left(ServerFailure(message: 'unable to update'));
+       return  Left(ServerFailure());
       }
      
      }

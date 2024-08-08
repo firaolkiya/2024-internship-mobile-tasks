@@ -11,14 +11,14 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:e_commerce/core/device/network_info/network_connectivity_checker.dart'
     as _i13;
 import 'package:e_commerce/core/device/network_info/network_info.dart' as _i12;
-import 'package:e_commerce/core/error/failures/failurs.dart' as _i8;
+import 'package:e_commerce/core/error/failures/failures.dart' as _i8;
 import 'package:e_commerce/features/product/data/data%20sources/local/local_data_source.dart'
     as _i10;
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart'
     as _i11;
 import 'package:e_commerce/features/product/data/model/product_model.dart'
     as _i3;
-import 'package:e_commerce/features/product/domain/entities/product.dart'
+import 'package:e_commerce/features/product/domain/entities/product_entity.dart'
     as _i9;
 import 'package:e_commerce/features/product/domain/repository/product_repository.dart'
     as _i6;
@@ -114,7 +114,7 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
 
   @override
   _i7.Future<_i2.Either<_i8.Failure, bool>> insertProduct(
-          {required _i9.Product? product}) =>
+          {required _i9.ProductEntity? product}) =>
       (super.noSuchMethod(
         Invocation.method(
           #insertProduct,
@@ -133,7 +133,7 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
       ) as _i7.Future<_i2.Either<_i8.Failure, bool>>);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, _i9.Product>> getProduct(
+  _i7.Future<_i2.Either<_i8.Failure, _i9.ProductEntity>> getProduct(
           {required String? id}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -141,8 +141,8 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
           [],
           {#id: id},
         ),
-        returnValue: _i7.Future<_i2.Either<_i8.Failure, _i9.Product>>.value(
-            _FakeEither_0<_i8.Failure, _i9.Product>(
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, _i9.ProductEntity>>.value(
+            _FakeEither_0<_i8.Failure, _i9.ProductEntity>(
           this,
           Invocation.method(
             #getProduct,
@@ -150,30 +150,30 @@ class MockProductRepository extends _i1.Mock implements _i6.ProductRepository {
             {#id: id},
           ),
         )),
-      ) as _i7.Future<_i2.Either<_i8.Failure, _i9.Product>>);
+      ) as _i7.Future<_i2.Either<_i8.Failure, _i9.ProductEntity>>);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, List<_i9.Product>>> getAllProduct() =>
+  _i7.Future<_i2.Either<_i8.Failure, List<_i9.ProductEntity>>> getAllProduct() =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllProduct,
           [],
         ),
         returnValue:
-            _i7.Future<_i2.Either<_i8.Failure, List<_i9.Product>>>.value(
-                _FakeEither_0<_i8.Failure, List<_i9.Product>>(
+            _i7.Future<_i2.Either<_i8.Failure, List<_i9.ProductEntity>>>.value(
+                _FakeEither_0<_i8.Failure, List<_i9.ProductEntity>>(
           this,
           Invocation.method(
             #getAllProduct,
             [],
           ),
         )),
-      ) as _i7.Future<_i2.Either<_i8.Failure, List<_i9.Product>>>);
+      ) as _i7.Future<_i2.Either<_i8.Failure, List<_i9.ProductEntity>>>);
 
   @override
   _i7.Future<_i2.Either<_i8.Failure, bool>> updateProduct({
     required String? id,
-    required _i9.Product? product,
+    required _i9.ProductEntity? product,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -229,7 +229,7 @@ class MockProductLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i7.Future<bool> deleteCache({required String? id}) => (super.noSuchMethod(
+  _i7.Future<bool> removeFromCach({required String? id}) => (super.noSuchMethod(
         Invocation.method(
           #deleteCache,
           [],
@@ -239,7 +239,7 @@ class MockProductLocalDataSource extends _i1.Mock
       ) as _i7.Future<bool>);
 
   @override
-  _i7.Future<_i3.ProductModel>? getProduct({required String? id}) =>
+  _i7.Future<_i3.ProductModel>? getProductFromCach({required String? id}) =>
       (super.noSuchMethod(Invocation.method(
         #getProduct,
         [],
@@ -259,7 +259,7 @@ class MockProductLocalDataSource extends _i1.Mock
       ) as _i7.Future<bool>);
 
   @override
-  _i7.Future<bool> updateCache({
+  _i7.Future<bool> updateOnCache({
     required String? id,
     required _i3.ProductModel? productModel,
   }) =>

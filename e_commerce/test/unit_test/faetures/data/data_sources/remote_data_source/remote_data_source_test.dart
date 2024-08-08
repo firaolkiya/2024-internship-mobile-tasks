@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 
-import 'package:e_commerce/core/error/failures/failurs.dart';
+import 'package:e_commerce/core/error/failures/failures.dart';
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart';
 import 'package:e_commerce/features/product/data/model/product_model.dart';
 import 'package:flutter/widgets.dart';
@@ -107,12 +107,11 @@ void main() {
     //get product from api
     test('should throws exception', ()async {
       
-      final Map<String,dynamic> js =json.decode(await readJson())['data'];
        when(httpClient.get(Uri.parse('http:/peoduct/getproduct/1')))
        .thenAnswer((realInvocation) async => http.Response('error',404));
       
       final call =  remoteDataSource.getProduct;
-      expect(()=>call(id: '1'), throwsA(isA<ConnectionFailure>()));
+      expect(()=>call(id: '1'), throwsA(isA<NetworkFailure>()));
       verify(httpClient.get(Uri.parse('http:/peoduct/getproduct/1')));
 
     });
@@ -144,14 +143,12 @@ void main() {
 
   //get all products from remote data source
   test('should throws exception', ()async {
-      final Map<String,dynamic> js =json.decode(await readJson())['data'];
-      final products = [js];
        when(httpClient.get(Uri.parse('http:/peoduct/items/')))
        .thenAnswer((realInvocation) async => http.Response('error',404));
       
       final call = await remoteDataSource.getAllProduct;
 
-      expect(()=>call(), throwsA(isA<ConnectionFailure>()));
+      expect(()=>call(), throwsA(isA<NetworkFailure>()));
       verify(httpClient.get(Uri.parse('http:/peoduct/items/')));
 
     });

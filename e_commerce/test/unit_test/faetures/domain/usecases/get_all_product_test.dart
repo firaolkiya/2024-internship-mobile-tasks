@@ -1,7 +1,7 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/features/product/domain/entities/product.dart';
+import 'package:e_commerce/features/product/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/product/domain/usecases/get_all_product_uc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +14,7 @@ void main() {
   
   MockProductRepository mockProductRepository = MockProductRepository();
   GetAllProductUsecase getAllProductUsecase = GetAllProductUsecase(productRepository: mockProductRepository);
-  final List<Product> data = [];
+  final List<ProductEntity> data = [];
   test('should return called', () async{
         when(mockProductRepository.getAllProduct()).thenAnswer((realInvocation) async => 
             Right(data)

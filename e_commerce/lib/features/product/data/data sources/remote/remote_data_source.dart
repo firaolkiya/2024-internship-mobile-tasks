@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../../../../core/error/failures/failurs.dart';
+import '../../../../../core/error/failures/failures.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductRemoteDataSource{
@@ -45,7 +45,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   Future<List<ProductModel>> getAllProduct()async {
       final response =await client.get(Uri.parse('http:/peoduct/items/'));
       if(response.statusCode!=200){
-        throw ConnectionFailure(message: 'unable to fetch data');
+        throw NetworkFailure();
       }
       final js = json.decode(response.body);
       final List<ProductModel>pList = [];
@@ -67,7 +67,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       return ProductModel.fromJson(await json.decode(response.body));
     }
 
-    throw ConnectionFailure(message: 'unable to get product from the server');
+    throw NetworkFailure();
     
      
    } catch (e) {

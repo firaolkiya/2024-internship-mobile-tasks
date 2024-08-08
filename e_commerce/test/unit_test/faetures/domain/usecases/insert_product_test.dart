@@ -1,6 +1,6 @@
 
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/features/product/domain/entities/product.dart';
+import 'package:e_commerce/features/product/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/product/domain/usecases/insert_product.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +15,7 @@ void main() {
     InsertProductUsecase insertProductUsecase =InsertProductUsecase(productRepository: mockProductRepository);
 
 
-Product product = Product(
+ProductEntity product = ProductEntity(
   id: '1',
   price: 10, 
   imageUrl: 'usecase/main', 
