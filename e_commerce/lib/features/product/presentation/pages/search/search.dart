@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../widget/common/product_card.dart';
-import '../../widget/common/search_bar.dart';
+import '../../widget/product_card.dart';
+import '../../widget/search_bar.dart';
 import '../detail/detail.dart';
 
 class SearchItem extends StatelessWidget {

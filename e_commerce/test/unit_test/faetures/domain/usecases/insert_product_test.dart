@@ -30,7 +30,7 @@ ProductEntity product = ProductEntity(
 
            final response = await insertProductUsecase.execute(product);
  
-           expect(response, const Right('added succesfully'));
+           expect(response, const Right(true));
     });
 
 

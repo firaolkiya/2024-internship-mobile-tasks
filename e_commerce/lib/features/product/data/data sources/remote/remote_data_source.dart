@@ -31,8 +31,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   final http.Client client;
 
   ProductRemoteDataSourceImpl({required this.client});
-
-
+  
   @override
   Future<bool> deleteProduct({required String id}) async {
     final response = await client.get(Uri.parse('http:/peoduct/items/del/121'));
@@ -53,7 +52,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       for(dynamic item in js){
           pList.add(ProductModel.fromJson(item));
       }
-      
+
       return Future.value(pList);
       
 

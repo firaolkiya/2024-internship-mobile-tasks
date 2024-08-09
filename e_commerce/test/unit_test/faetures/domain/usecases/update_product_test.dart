@@ -17,14 +17,13 @@ void main() {
   name: 'shoes', 
   description: 'nice'
   );
-
     test('should call product repository', () async{
            when(mockProductRepository.updateProduct(id: '1',product: product ))
            .thenAnswer((realInvocation) async => const Right(true));
 
            final response = await updateProductUsecase.execute(id: '1', product: product);
 
-           expect(response, const Right('added updated'));
+           expect(response, const Right(true));
     });
 
    

@@ -46,7 +46,6 @@ void main() {
   
 
   //insert product to remote data source
-
   test('should return true', ()async {
       final Map<String,dynamic> js =json.decode(await readJson())['data'];
       ProductModel productModel = ProductModel.fromJson(js);
@@ -80,9 +79,6 @@ void main() {
       
       final result = await remoteDataSource.getAllProduct();
       verify(httpClient.get(Uri.parse(RemoteDataInfo.baseUrl)));
-
-      print(result.toString());
-
       expect(result, isA<List<ProductModel>>());
 
     });
@@ -146,13 +142,13 @@ void main() {
 
   //get all products from remote data source
   test('should throws exception', ()async {
-       when(httpClient.get(Uri.parse('http:/peoduct/items/')))
+       when(httpClient.get(Uri.parse(RemoteDataInfo.baseUrl)))
        .thenAnswer((realInvocation) async => http.Response('error',404));
       
       final call = remoteDataSource.getAllProduct;
 
       expect(()=>call(), throwsA(isA<NetworkFailure>()));
-      verify(httpClient.get(Uri.parse('http:/peoduct/items/')));
+      verify(httpClient.get(Uri.parse(RemoteDataInfo.baseUrl)));
 
     });
 
