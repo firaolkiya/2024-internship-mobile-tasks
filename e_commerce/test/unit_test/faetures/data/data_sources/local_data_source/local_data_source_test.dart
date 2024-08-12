@@ -20,7 +20,7 @@ void main() {
     setUp(() async {
       TestWidgetsFlutterBinding.ensureInitialized();
       sharedPreferences = MocktailSharedPreference();
-      localDataSource= ProductLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+      localDataSource= ProductLocalDataSourceImpl();
     },
 
     );

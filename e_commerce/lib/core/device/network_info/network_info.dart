@@ -1,5 +1,7 @@
 
 
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
 import 'network_connectivity_checker.dart';
 
 abstract class NetworkInfo{
@@ -20,7 +22,7 @@ class NetworkInfoImpl extends NetworkInfo{
     return  networkConnectivity.hasConnection;
       
     } catch (e) {
-      return Future(() => false);
+      return Future(() => InternetConnectionChecker().hasConnection);
     }
     }
   

@@ -30,14 +30,12 @@ abstract class ProductLocalDataSource{
 
 class ProductLocalDataSourceImpl extends ProductLocalDataSource{
 
-  final SharedPreferences sharedPreferences;
-
-  ProductLocalDataSourceImpl({required this.sharedPreferences});
-
+  ProductLocalDataSourceImpl();
+  
   
   ///save data into sharedPreferences
   Future<bool> saveDataLocally()async {
-
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       List<String> encodedString = [];
       if(listOfProducts.isEmpty){
@@ -79,6 +77,7 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
 
   @override
   Future<List<ProductModel>> getAllFromCach() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
     final List<String>? productsCode = sharedPreferences.getStringList(product_key);
     listOfProducts=[];

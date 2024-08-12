@@ -25,6 +25,7 @@ dependencies:
   sqflite: ^2.3.3+1
   shared_preferences: ^2.3.1
   flutter_bloc: ^8.1.6
+  image_loader_flutter: ^0.0.3
   
 
 dev_dependencies:

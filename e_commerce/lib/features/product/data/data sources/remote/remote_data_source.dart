@@ -43,18 +43,20 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getAllProduct()async {
+     try{ 
       final response =await client.get(Uri.parse(RemoteDataInfo.baseUrl));
       if(response.statusCode!=200){
         throw NetworkFailure();
       }
-      final js = json.decode(response.body);
+      final js = json.decode(response.body)['data'];
       final List<ProductModel>pList = [];
       for(dynamic item in js){
           pList.add(ProductModel.fromJson(item));
       }
-
       return Future.value(pList);
-      
+      }
+      catch(e){
+        throw ServerFailure();}
 
   }
 

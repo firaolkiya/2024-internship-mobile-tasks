@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/util/constant/image.dart';
 import '../../../../core/util/constant/string.dart';
+import '../../data/model/product_model.dart';
+import '../../domain/entities/product_entity.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.onTap});
+   ProductCard({super.key, required this.onTap,  required this.productModel});
 
   final VoidCallback  onTap;
+   ProductEntity productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,9 @@ class ProductCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image(
-                fit: BoxFit.fill,
-                image: AssetImage(AppImage.shoes)
+                width: double.infinity,
+                fit: BoxFit.contain,
+                image: NetworkImage(productModel.imageUrl)
                 ),
             ),
             Row(
@@ -34,15 +38,15 @@ class ProductCard extends StatelessWidget {
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Text(AppString.dShoes,style: const TextStyle(fontWeight:FontWeight.bold,fontSize: 18),),
-                    Text(AppString.shoesTitle)
+                    Text(productModel.name,style: const TextStyle(fontWeight:FontWeight.bold,fontSize: 18),),
+                    Text(productModel.description)
                   ],
                 ),
-                const Column(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('\$120',style: TextStyle(fontWeight:FontWeight.bold,fontSize: 20)),
-                    Row(
+                    Text('\$${productModel.price}',style: const TextStyle(fontWeight:FontWeight.bold,fontSize: 20)),
+                    const Row(
                       children: [
                         Icon(Icons.star,color: Colors.orange,),
                         Text('(4.0)',style: TextStyle(fontSize: 18))

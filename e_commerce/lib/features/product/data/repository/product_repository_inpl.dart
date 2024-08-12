@@ -41,16 +41,15 @@ class ProductRepositoryImpl extends ProductRepository{
      }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getAllProduct() async{
+  Future<Either<Failure, List<ProductModel>>> getAllProduct() async{
     try {
       if(await networkInfo.isConnected){
-
         List<ProductModel> tempList = await remoteDataSource.getAllProduct();
-        return  Right(ListConverter.toProductList(tempList) );
+        return  Right(tempList);
          }
         else{
           List<ProductModel> tempList = await localDataSource.getAllFromCach()!;
-           return  Right(ListConverter.toProductList(tempList) );
+           return  Right(tempList);
         }
       } catch (e) {
         return Left(ServerFailure());
@@ -60,13 +59,13 @@ class ProductRepositoryImpl extends ProductRepository{
   
 
   @override
-  Future<Either<Failure, ProductEntity>> getProduct({required String id}) async{
+  Future<Either<Failure, ProductModel>> getProduct({required String id}) async{
     try {
       if(await networkInfo.isConnected){
-        return  Right( (await remoteDataSource.getProduct(id: id)).toProductEntity());
+        return  Right( (await remoteDataSource.getProduct(id: id)));
       }
       else{
-        return Right((await localDataSource.getProductFromCach(id: id))!.toProductEntity());
+        return Right((await localDataSource.getProductFromCach(id: id))!);
       }
       } catch (e) {
     

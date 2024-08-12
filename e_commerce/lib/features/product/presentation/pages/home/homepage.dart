@@ -1,8 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/util/constant/color.dart';
 import '../../../../../core/util/constant/image.dart';
+import '../../bloc/product_bloc.dart';
+import '../../bloc/product_state.dart';
 import '../../widget/navigation_animation.dart/custom_fade_animation.dart';
 import '../../widget/navigation_animation.dart/custom_scale_transition.dart';
 import '../../widget/navigation_animation.dart/custom_slide_animaion.dart';
@@ -13,7 +15,7 @@ import '../search/search.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
-   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class Homepage extends StatelessWidget {
         onTap: () {
           Navigator.of(context)
               .push(CustomSlideTransition(child: const AddProduct()));
-           },
+        },
         child: const CircleAvatar(
           radius: 25,
           backgroundColor: Colors.blue,
@@ -69,77 +71,97 @@ class Homepage extends StatelessWidget {
           )
         ],
         title: const Padding(
-          padding: EdgeInsets.only(top: 12.0, left: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'jul 30 2024',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w200),
-              ),
-              SizedBox(height: 5),
-              Text.rich(TextSpan(
-                  text: 'Hello ',
-                  style: TextStyle(
-                      fontSize: 28, color: Color.fromARGB(255, 190, 54, 244)),
-                  children: [
-                    TextSpan(
-                        text: 'Firaol',
-                        style: TextStyle(color: AppColor.blueColor))
-                  ])),
-            ],
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0),
-        child: ListView(
-          dragStartBehavior: DragStartBehavior.down,
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: EdgeInsets.only(top: 12.0, left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Available Products',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Text(
+                    'jul 30 2024',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w200),
                   ),
-                  InkWell(
-                    onTap: () => Navigator.of(context)
-                        .push(CustomScaleTransition(child: const SearchItem())),
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                                blurRadius: 1,
-                                spreadRadius: 1,
-                                color: Color.fromARGB(77, 34, 33, 33))
-                          ],
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Icon(Icons.search),
-                    ),
-                  ),
+                  SizedBox(height: 5),
+                  Text.rich(TextSpan(
+                      text: 'Hello ',
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: Color.fromARGB(255, 190, 54, 244)),
+                      children: [
+                        TextSpan(
+                            text: 'Firaol',
+                            style: TextStyle(color: AppColor.blueColor))
+                      ])),
                 ],
               ),
             ),
-            ListView.builder(
-              itemCount: 10,
-              shrinkWrap: true,
-              itemBuilder: (context, index) => ProductCard(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(CustomFadeAnimation(child: const DetailScreen()));
-                },
-              ),
-            ),
-          ],
-        ),
       ),
+        
+      
+      body:   BlocConsumer<ProductBloc, ProductState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            if(state is ErrorState){
+              return Center(child: Text(state.error),);
+            }
+            if (state is !LoadedAllProductState){
+              return const Center(child: CircularProgressIndicator(),);
+            }
+            return Padding(
+  padding: const EdgeInsets.symmetric(vertical: 15.0),
+  child: SingleChildScrollView(
+    physics: const BouncingScrollPhysics(),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Available Products',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              InkWell(
+                onTap: () => Navigator.of(context)
+                    .push(CustomScaleTransition(child: const SearchItem())),
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                            color: Color.fromARGB(77, 34, 33, 33))
+                      ],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Icon(Icons.search),
+                ),
+              ),
+            ],
+          ),
+        ),
+        ListView.builder(
+          itemCount: state.listOfProducts!.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(), // Disable the internal scrolling
+          itemBuilder: (context, index) => ProductCard(
+            productModel: state.listOfProducts![index],
+            onTap: () {
+              Navigator.of(context)
+                  .push(CustomFadeAnimation(child: const DetailScreen()));
+            },
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
+          }
+          
+      )
     );
   }
 }
-

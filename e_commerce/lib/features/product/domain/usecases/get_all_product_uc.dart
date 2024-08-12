@@ -11,7 +11,12 @@ class GetAllProductUsecase{
   GetAllProductUsecase({required this.productRepository});
 
   Future<Either<Failure,List<ProductEntity>>> execute() async{
+    try {
       return await productRepository.getAllProduct();
+      
+    } catch (e) {
+      throw ServerFailure();
+    }
   }
    
 }

@@ -30,7 +30,7 @@ class ProductModel extends ProductEntity {
             name: jsonObject['name'],
             description: jsonObject['description'],
             imageUrl: jsonObject['imageUrl'],
-            price: jsonObject['price']
+            price: jsonObject['price'].toDouble()
     );
 
   

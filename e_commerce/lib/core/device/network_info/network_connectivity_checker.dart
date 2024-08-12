@@ -19,7 +19,7 @@ class NetworkConnectivityChecker implements InternetConnectionChecker{
 
   @override
   // TODO: implement hasConnection
-  Future<bool> get hasConnection => throw UnimplementedError();
+  Future<bool> get hasConnection => InternetConnectionChecker().hasConnection;
 
   @override
   // TODO: implement hasListeners
