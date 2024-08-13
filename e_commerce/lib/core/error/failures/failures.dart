@@ -23,3 +23,8 @@ class CachFailure extends Failure{
   CachFailure({ super.message = 'Failed to retrieve data from cache. Please try again'});
   
 }
+
+class TypeConvertionError extends Failure{
+  TypeConvertionError({ super.message = 'unable to convert data'});
+  
+}

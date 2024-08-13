@@ -28,7 +28,7 @@ ProductEntity product = ProductEntity(
                   .insertProduct(product: product))
                     .thenAnswer((realInvocation) async => const Right(true));
 
-           final response = await insertProductUsecase.execute(product);
+           final response = await insertProductUsecase.execute(product: product);
  
            expect(response, const Right(true));
     });

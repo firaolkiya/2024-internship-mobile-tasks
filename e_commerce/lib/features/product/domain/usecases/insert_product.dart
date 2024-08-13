@@ -10,7 +10,7 @@ class InsertProductUsecase{
 
   InsertProductUsecase({required this.productRepository});
 
-  Future<Either<Failure,bool>> execute(ProductEntity product) async{
+  Future<Either<Failure,bool>> execute({required ProductEntity product}) async{
 
     return await productRepository.insertProduct(product: product);
 

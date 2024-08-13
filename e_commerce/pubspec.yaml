@@ -26,6 +26,8 @@ dependencies:
   shared_preferences: ^2.3.1
   flutter_bloc: ^8.1.6
   image_loader_flutter: ^0.0.3
+  bloc_test: ^9.1.7
+  get_it: ^7.7.0
   
 
 dev_dependencies:

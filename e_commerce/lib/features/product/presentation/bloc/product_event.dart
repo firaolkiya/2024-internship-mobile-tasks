@@ -16,7 +16,7 @@ final class GetSingleProductEvent extends ProductEvent{
 final class UpdateProductEvent extends ProductEvent{
       final String id;
       final ProductModel productModel;
-  UpdateProductEvent(this.productModel, {required this.id});
+  UpdateProductEvent({required this.productModel, required this.id});
 
 }
 final class DeleteProductEvent extends ProductEvent{
@@ -24,6 +24,6 @@ final class DeleteProductEvent extends ProductEvent{
   DeleteProductEvent({required this.id});
 }
 final class CreateProductEvent extends ProductEvent{
-  final ProductModel productModel;
-  CreateProductEvent({required this.productModel});
+  final String name,price,catagory,description,imageUrl;
+  CreateProductEvent(this.name, this.price, this.catagory, this.description, this.imageUrl);
 }

@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/device/network_info/network_info.dart';
 import '../../../../core/error/failures/failures.dart';
-import '../../../../core/helper/converter/model_to_product_list.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/repository/product_repository.dart';
 import '../data sources/local/local_data_source.dart';
@@ -12,7 +11,7 @@ import '../model/product_model.dart';
 
 
 
-class ProductRepositoryImpl extends ProductRepository{
+class ProductRepositoryImpl implements ProductRepository{
    
    final ProductRemoteDataSource remoteDataSource;
    final ProductLocalDataSource localDataSource;

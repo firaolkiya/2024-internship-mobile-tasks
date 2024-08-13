@@ -13,7 +13,7 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    final searchInputController= TextEditingController();
     return Container(
         margin: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class SearchField extends StatelessWidget {
             ),
           
             suffixIcon: InkWell(
-              onTap: () =>showBottom(context),
+              onTap: () =>showBottom(context,searchInputController),
               child: Container(
                   padding: const EdgeInsets.all(10),
                   color: AppColor.blueColor,
@@ -69,7 +69,7 @@ class SearchField extends StatelessWidget {
 }
 
 
-void showBottom(BuildContext context){
+void showBottom(BuildContext context,TextEditingController TextEditingController){
         final controller = Get.put(SlideController());
          showModalBottomSheet(
           enableDrag: true,
@@ -86,7 +86,7 @@ void showBottom(BuildContext context){
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text('Catagory',style: TextStyle(fontSize: 18),),
-                        const InputField(),
+                         InputField(controller: TextEditingController,),
                         AppSpacing.medium,
                         const Text('Price',style: TextStyle(fontSize: 18),),
                           Slider(

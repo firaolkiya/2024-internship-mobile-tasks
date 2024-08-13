@@ -1,5 +1,8 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/helper/converter/input_converter.dart';
+import '../../../../core/util/constant/product_id_generator.dart';
+import '../../data/model/product_model.dart';
 import '../../domain/usecases/delete_product_usecase.dart';
 import '../../domain/usecases/get_all_product_uc.dart';
 import '../../domain/usecases/get_product_uc.dart';
@@ -19,6 +22,7 @@ class ProductBloc extends Bloc<ProductEvent,ProductState> {
   
   ProductBloc({required this.getAllProductUsecase, required this.getSingleProductUsecase, required this.updateProductUsecase, required this.insertProductUsecase, required this.deleteProductUsecase}):super(InitialState()){
       on<LoadAllProductEvent>((event, emit) async {
+        emit(LoadingState());
           final result =  await getAllProductUsecase.execute();
           result.fold((
             leftResult){
@@ -45,23 +49,54 @@ class ProductBloc extends Bloc<ProductEvent,ProductState> {
             result.fold((leftResult){
               emit(ErrorState(error: leftResult.message));
             }, (rightResult){
-              add(LoadAllProductEvent());
+                add(LoadAllProductEvent());
             });
       });
 
-      on<UpdateProductEvent>((event, emit) {
-
+      on<UpdateProductEvent>((event, emit) async{
+        emit(LoadingState());
+        final result= await updateProductUsecase.execute(id: event.id, product: event.productModel);
+        result.fold((ifLeft){
+          emit(ErrorState(error: ifLeft.message));
+        }, (ifRight){
+          add(LoadAllProductEvent());
+        });
       });
       on<CreateProductEvent>((event, emit) async{
              emit(LoadingState());
-            final result =  await insertProductUsecase.execute(event.productModel);
-            result.fold((leftResult){
-              emit(ErrorState(error: leftResult.message));
-            }, (rightResult){
+             final result = await createProduct(event);
+             if (!result){
+                emit(ErrorState(error: 'unable to insert'));
+             }
+             else{
               add(LoadAllProductEvent());
-            });
+             }
       });
-      Future.microtask(() => add(LoadAllProductEvent()));
+  }
+
+  Future<bool> createProduct(CreateProductEvent event) async{
+      double price = 0;
+             final priceResult = await InputConverter.stringToDouble(event.price);
+             priceResult.fold((onFailed){
+              return false;
+             }, 
+             (conPrice){
+                  price=conPrice;
+             });
+             String id = '1';
+             final generatedId   = await ProductIdGenerator.generate(event.name);
+             generatedId.fold((ifLeft){return Future.value(false);}, (ifRight){id = ifRight;});
+            
+             ProductModel productModel = ProductModel(id: id, price: price, imageUrl: event.imageUrl, name: event.name, description: event.description,);
+            final result =  await insertProductUsecase.execute(product: productModel);
+            result.fold((leftResult){
+              return  false;
+            }, 
+            
+            (rightResult){
+              return rightResult;
+            });
+            return true;
   }
   
 }

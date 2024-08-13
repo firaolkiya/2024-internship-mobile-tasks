@@ -61,7 +61,6 @@ void main() {
         //insert product
         test('should return succuss message', () async{
            final ProductModel productModel = ProductModel.fromJson(json.decode(await readJson())['data']);
-            productModel.id='6';
             final result = await localDataSource.insertProductToCach(productModel: productModel);
             expect(result, true);
             
