@@ -1,5 +1,9 @@
 
 import 'dart:convert';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,12 +34,23 @@ abstract class ProductLocalDataSource{
 
 class ProductLocalDataSourceImpl extends ProductLocalDataSource{
 
-  ProductLocalDataSourceImpl();
+  ProductLocalDataSourceImpl(this.sharedPreferences);
   
-  
+      final SharedPreferences sharedPreferences;
+
+ Future<String?> _saveImageLocally(String imageUrl) async {
+  final response = await http.get(Uri.parse(imageUrl));
+  if (response.statusCode == 200) {
+    final directory = await getTemporaryDirectory();
+    final filePath = '${directory.path}/${Uri.parse(imageUrl).pathSegments.last}';
+    final file = File(filePath);
+    await file.writeAsBytes(response.bodyBytes);
+    return Future.value(filePath);
+  } 
+  return null;
+}
   ///save data into sharedPreferences
   Future<bool> saveDataLocally()async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       List<String> encodedString = [];
       if(listOfProducts.isEmpty){
@@ -78,21 +93,32 @@ class ProductLocalDataSourceImpl extends ProductLocalDataSource{
   @override
   Future<List<ProductModel>> getAllFromCach() async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    try {
-    final List<String>? productsCode = sharedPreferences.getStringList(product_key);
-    listOfProducts=[];
-    if(productsCode!=null){
-        for(String pCode in productsCode){
-           final ProductModel productModel = ProductModel.fromJson(json.decode(pCode)['data']);
-           listOfProducts.add(productModel);
-          }
-    }
-    return listOfProducts;
-    } catch (e) {
-    
-      throw CachFailure();
-    }
+try {
+  final List<String>? productsCode = sharedPreferences.getStringList(product_key);
+  listOfProducts = [];
 
+  if (productsCode != null) {
+    for (String pCode in productsCode) {
+      print('pCode: $pCode');
+      final Map<String, dynamic>? decodedJson = json.decode(pCode);
+
+      if (decodedJson != null) {
+        // Check if 'data' key exists and contains a Ma
+          final ProductModel productModel = ProductModel.fromJson(decodedJson);
+          listOfProducts.add(productModel);
+      } else {
+        print('Error: Decoded JSON is null or invalid.');
+      }
+    }
+  }
+
+  print(listOfProducts);
+  print('Returned products list');
+  return listOfProducts;
+} catch (e) {
+  print('Exception: ${e.toString()}');
+  throw CachFailure();
+}
     
   }
 

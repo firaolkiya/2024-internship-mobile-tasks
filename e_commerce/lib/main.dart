@@ -5,8 +5,10 @@ import 'features/product/presentation/bloc/product_bloc.dart';
 import 'features/product/presentation/bloc/product_event.dart';
 import 'features/product/presentation/pages/home/homepage.dart';
 
-void main(List<String> args) {
-  init();
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await locator();
+ 
   runApp(const ECommerce());
 }
 
@@ -15,6 +17,7 @@ class ECommerce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: true,
       create: (context) => sl<ProductBloc>()..add(LoadAllProductEvent()),
       child: MaterialApp(
         theme: ThemeData(useMaterial3: true),

@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../core/error/failures/failures.dart';
 import '../../../../../core/util/constant/remote_data_info.dart';
+import '../../../presentation/widget/search_bar.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductRemoteDataSource {
@@ -28,6 +30,9 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   final http.Client client;
 
   ProductRemoteDataSourceImpl({required this.client});
+
+ 
+
 
   @override
   Future<bool> deleteProduct({required String id}) async {
@@ -60,7 +65,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   Future<ProductModel> getProduct({required String id}) async {
     try {
       final response =
-          await client.get(Uri.parse('http:/peoduct/getproduct/$id'));
+          await client.get(Uri.parse(RemoteDataInfo.getProductUrl(id)));
 
       if (response.statusCode == 200) {
         return ProductModel.fromJson(await json.decode(response.body));
@@ -75,27 +80,24 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   @override
   Future<bool> insertProduct({required ProductModel productModel}) async {
   try {
-    final uri = Uri.parse(RemoteDataInfo.toCreateKey);
+    final uri = Uri.parse(RemoteDataInfo.baseUrl);
     final request = http.MultipartRequest('POST', uri);
 
-    // Add the text fields
     request.fields['name'] = productModel.name;
     request.fields['description'] = productModel.description;
     request.fields['price'] = productModel.price.toString();
 
-    // Use your asset image URL directly
-    request.fields['imageUrl'] = 'asset/shoes.jpeg'; // Since we're using a placeholder
+    request.fields['image'] = productModel.imageUrl; // Since we're using a placeholder
+    print('image url ${productModel.imageUrl}');
+    //request.headers.addAll(RemoteDataInfo.jsonHeader);
 
-    // Optionally, you might want to add headers if required
-    request.headers.addAll(RemoteDataInfo.jsonHeader);
-
-    // Send the request and wait for the response
     final response = await request.send();
 
     if (response.statusCode == 201) {
       print('Product inserted successfully');
       return true;
     } else {
+      response.printError();
       print('Failed to insert product, status code: ${response.statusCode}');
       return false;
     }

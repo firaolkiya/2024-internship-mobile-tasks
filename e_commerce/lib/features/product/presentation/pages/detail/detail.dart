@@ -3,13 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../core/util/constant/image.dart';
 import '../../../../../core/util/constant/string.dart';
+import '../../../domain/entities/product_entity.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
-
-  @override
+  const DetailScreen({super.key, required this.productModel});
+  final ProductEntity productModel;
+  @override 
   Widget build(BuildContext context) {
     final List<Widget> number = [];
     final controller = Get.put(NumberController());
@@ -30,11 +30,11 @@ class DetailScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             children: [
-              Image(image: AssetImage(AppImage.shoes)),
+              Image(image: NetworkImage(productModel.imageUrl)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppString.shoesTitle),
+                  Text(productModel.name),
                   const Text('(4.0)', style: TextStyle(fontSize: 18))
                 ],
               ),

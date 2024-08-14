@@ -28,6 +28,9 @@ dependencies:
   image_loader_flutter: ^0.0.3
   bloc_test: ^9.1.7
   get_it: ^7.7.0
+  image_picker: ^1.1.2
+  path_provider: ^2.1.4
+  octo_image: ^2.1.0
   
 
 dev_dependencies:
@@ -49,6 +52,7 @@ flutter:
   assets:
     - asset/shoes.jpeg
     - asset/fira.jpg
+    - asset/image-load-failed-128.png
     - asset/json/dummy_data.json
     
 

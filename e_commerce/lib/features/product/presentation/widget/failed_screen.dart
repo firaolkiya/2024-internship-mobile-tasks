@@ -5,8 +5,8 @@ class FailedScreen extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(message),
+    return const Center(
+      child:  Text('failed',style: TextStyle(fontSize: 20,color: Colors.black),),
     );
   }
 }

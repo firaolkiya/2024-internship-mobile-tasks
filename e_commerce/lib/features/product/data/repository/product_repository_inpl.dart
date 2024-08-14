@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/device/network_info/network_info.dart';
 import '../../../../core/error/failures/failures.dart';
+import '../../../../core/util/constant/local_data_info.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/repository/product_repository.dart';
 import '../data sources/local/local_data_source.dart';
@@ -22,6 +23,7 @@ class ProductRepositoryImpl implements ProductRepository{
       required this.localDataSource,
       required this.networkInfo
     });
+    
     
     
   @override
@@ -44,11 +46,15 @@ class ProductRepositoryImpl implements ProductRepository{
     try {
       if(await networkInfo.isConnected){
         List<ProductModel> tempList = await remoteDataSource.getAllProduct();
+        // for(ProductModel product in tempList
+        // ){
+        //     //localDataSource.insertProductToCach(productModel: product);
+        // }
         return  Right(tempList);
          }
         else{
-          List<ProductModel> tempList = await localDataSource.getAllFromCach()!;
-           return  Right(tempList);
+          //List<ProductModel> tempList = await localDataSource.getAllFromCach()!;
+           return  Right(listOfProducts);
         }
       } catch (e) {
         return Left(ServerFailure());
