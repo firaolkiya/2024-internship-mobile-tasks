@@ -19,16 +19,14 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: InkWell(
-          onTap: () {
-            Navigator.of(context)
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(),
+          backgroundColor: const Color.fromARGB(255, 22, 131, 219),
+          onPressed: () {  
+             Navigator.of(context)
                 .push(CustomSlideTransition(child: const AddProduct()));
           },
-          child: const CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.blue,
-            child: Icon(Icons.add),
-          ),
+          child: const Icon(Icons.add),
         ),
         appBar: AppBar(
           clipBehavior: Clip.antiAlias,

@@ -99,7 +99,6 @@ try {
 
   if (productsCode != null) {
     for (String pCode in productsCode) {
-      print('pCode: $pCode');
       final Map<String, dynamic>? decodedJson = json.decode(pCode);
 
       if (decodedJson != null) {
@@ -107,13 +106,11 @@ try {
           final ProductModel productModel = ProductModel.fromJson(decodedJson);
           listOfProducts.add(productModel);
       } else {
-        print('Error: Decoded JSON is null or invalid.');
       }
     }
   }
 
   print(listOfProducts);
-  print('Returned products list');
   return listOfProducts;
 } catch (e) {
   print('Exception: ${e.toString()}');

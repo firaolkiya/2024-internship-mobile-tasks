@@ -8,6 +8,7 @@ import 'package:e_commerce/features/product/domain/usecases/get_all_product_uc.d
 import 'package:e_commerce/features/product/domain/usecases/get_product_uc.dart';
 import 'package:e_commerce/features/product/domain/usecases/insert_product.dart';
 import 'package:e_commerce/features/product/domain/usecases/update_product_uc.dart';
+import 'package:e_commerce/features/product/presentation/bloc/product_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,8 @@ import 'package:shared_preferences/shared_preferences.dart';
     InsertProductUsecase,
     DeleteProductUsecase,
     UpdateProductUsecase,
-    GetProductUsecase
+    GetProductUsecase,
+    ProductBloc,
   ],
   customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],
 )

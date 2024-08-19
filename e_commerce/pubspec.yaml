@@ -31,6 +31,9 @@ dependencies:
   image_picker: ^1.1.2
   path_provider: ^2.1.4
   octo_image: ^2.1.0
+  http_parser: ^4.0.2
+  onboarding: ^4.0.2
+  flutter_native_splash: ^2.4.1
   
 
 dev_dependencies:
@@ -54,6 +57,7 @@ flutter:
     - asset/fira.jpg
     - asset/image-load-failed-128.png
     - asset/json/dummy_data.json
+    - asset/onboard.png
     
 
 

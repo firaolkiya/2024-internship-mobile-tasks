@@ -22,16 +22,16 @@ class AddProduct extends StatefulWidget {
 }
 
 class _AddProductState extends State<AddProduct> {
-
-    File? selectedImage;
-
-   @override
-  Widget build(BuildContext context) {
+  File? selectedImage;
     final nameInputController = TextEditingController();
     final catagoryInputController = TextEditingController();
     final priceInputController = TextEditingController();
     final descriptionInputController = TextEditingController();
 
+
+   @override
+  Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Product'),
@@ -140,7 +140,7 @@ class _AddProductState extends State<AddProduct> {
                               priceInputController.text,
                               catagoryInputController.text,
                               descriptionInputController.text,
-                              selectedImage!.toString()
+                              selectedImage!.path
                             ));
                       },
                       child: const Text('Add')),
@@ -167,7 +167,9 @@ class _AddProductState extends State<AddProduct> {
      final selected = await ImagePicker().pickImage(source: ImageSource.gallery);
 
      setState(() {
-       selectedImage = File(selected!.path);
+      if(selected!=null){
+         selectedImage = File(selected.path);
+      }
      });
   }
 }

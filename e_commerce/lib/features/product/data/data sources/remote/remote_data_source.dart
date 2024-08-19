@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:http_parser/http_parser.dart';
 import '../../../../../core/error/failures/failures.dart';
 import '../../../../../core/util/constant/remote_data_info.dart';
-import '../../../presentation/widget/search_bar.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductRemoteDataSource {
@@ -31,12 +29,10 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
 
   ProductRemoteDataSourceImpl({required this.client});
 
- 
-
-
   @override
   Future<bool> deleteProduct({required String id}) async {
-    final response = await client.get(Uri.parse('http:/peoduct/items/del/121'));
+    final response =
+        await client.delete(Uri.parse(RemoteDataInfo.getProductUrl(id)));
     if (response.statusCode == 200) {
       return response.body == '1';
     }
@@ -79,43 +75,56 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
 
   @override
   Future<bool> insertProduct({required ProductModel productModel}) async {
-  try {
-    final uri = Uri.parse(RemoteDataInfo.baseUrl);
-    final request = http.MultipartRequest('POST', uri);
+    try {
+      final uri = Uri.parse(RemoteDataInfo.baseUrl);
+      final request = http.MultipartRequest('POST', uri);
 
-    request.fields['name'] = productModel.name;
-    request.fields['description'] = productModel.description;
-    request.fields['price'] = productModel.price.toString();
+      request.fields['name'] = productModel.name;
+      request.fields['description'] = productModel.description;
+      request.fields['price'] = productModel.price.toString();
 
-    request.fields['image'] = productModel.imageUrl; // Since we're using a placeholder
-    print('image url ${productModel.imageUrl}');
-    //request.headers.addAll(RemoteDataInfo.jsonHeader);
+      request.files.add(await http.MultipartFile.fromPath(
+        'image',
+        productModel.imageUrl,
+        contentType: MediaType('image', 'jpg'),
+      )); // Since we're using a placeholder
+      //request.headers.addAll(RemoteDataInfo.jsonHeader);
 
-    final response = await request.send();
-
-    if (response.statusCode == 201) {
-      print('Product inserted successfully');
-      return true;
-    } else {
-      response.printError();
-      print('Failed to insert product, status code: ${response.statusCode}');
+      final response = await request.send();
+      if (response.statusCode == 201) {
+        
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
       return false;
     }
-  } catch (e) {
-    print('Error inserting product: ${e.toString()}');
-    return false;
   }
-}
 
   @override
-  Future<bool> updateProduct(
-      {required String id, required ProductModel productModel}) async {
-    final response = await client
-        .get(Uri.parse('http:/peoduct/items/update/$id/$productModel'));
+  Future<bool> updateProduct({
+    required String id,
+    required ProductModel productModel,
+  }) async {
+    final response = await http.put(
+      Uri.parse(
+          '${RemoteDataInfo.baseUrl}/$id'), // Assuming the URL includes the product ID
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'name': productModel.name,
+        'price': productModel.price,
+        'description': productModel.description,
+      }),
+    );
 
     if (response.statusCode == 200) {
-      return response.body == '1';
+      // Assuming the API returns a success message in the body
+      return jsonDecode(response.body)['success'] == true;
+    } else {
+      // Log or handle the error
+      print('Failed to update product: ${response.statusCode}');
+      return false;
     }
-    return false;
   }
 }

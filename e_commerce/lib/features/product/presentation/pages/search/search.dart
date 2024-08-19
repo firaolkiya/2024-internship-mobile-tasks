@@ -13,6 +13,7 @@ class SearchItem extends StatelessWidget {
   const SearchItem({super.key});
   @override
   Widget build(BuildContext context) {
+    final searchTextController = TextEditingController();
     return BlocConsumer<ProductBloc, ProductState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -24,6 +25,7 @@ class SearchItem extends StatelessWidget {
         if(state is !LoadedAllProductState){
           return const LoadingScreen();
         }
+        
         return Scaffold(
             appBar: AppBar(
               title: const Text('Search'),
@@ -33,20 +35,20 @@ class SearchItem extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.arrow_back_ios)),
-              bottom: const PreferredSize(
-                  preferredSize: Size(double.infinity, 60),
+              bottom:  PreferredSize(
+                  preferredSize: const Size(double.infinity, 60),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: SearchField(),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: SearchField(searchTextController: searchTextController,),
                   )),
             ),
-            body: Padding(
+            body: (state).listOfProducts!.isNotEmpty? Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
-                itemCount: (state).listOfProducts!.length,
+                itemCount: state.listOfProducts!.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => ProductCard(
-                  productModel:(state).listOfProducts![index],
+                  productModel:state.listOfProducts![index],
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -54,7 +56,9 @@ class SearchItem extends StatelessWidget {
                       )),
                 ),
               ),
-            ));
+            ):
+            const Center(child: Text('No Such product is found'),)
+            );
       },
     );
   }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class ProductEntity extends Equatable{
+ class ProductEntity extends Equatable{
     
      final String id;
      final double price;

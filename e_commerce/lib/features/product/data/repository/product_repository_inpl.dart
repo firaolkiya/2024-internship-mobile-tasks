@@ -43,6 +43,7 @@ class ProductRepositoryImpl implements ProductRepository{
 
   @override
   Future<Either<Failure, List<ProductModel>>> getAllProduct() async{
+    print(await networkInfo.isConnected);
     try {
       if(await networkInfo.isConnected){
         List<ProductModel> tempList = await remoteDataSource.getAllProduct();

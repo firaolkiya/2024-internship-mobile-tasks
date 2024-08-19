@@ -112,7 +112,7 @@ void main() {
       );
       return productBloc;
       },
-      act: (bloc) => bloc.add(UpdateProductEvent(id: '1',productModel: listOfProducts[0])),
+      act: (bloc) => bloc.add(UpdateProductEvent(id: '1',name: 'name',price: 'price',description: 'description')),
       wait:const Duration(milliseconds: 500),
       expect: () =>  <ProductState>[LoadingState(), LoadedAllProductState(listOfProducts: listOfProducts)],
     );
@@ -192,7 +192,7 @@ void main() {
       );
       return productBloc;
       },
-      act: (bloc) => bloc.add(UpdateProductEvent(id: '1',productModel: listOfProducts[0])),
+      act: (bloc) => bloc.add(UpdateProductEvent(id: '1',name: 'name',price: 'price',description: 'description')),
       wait:const Duration(milliseconds: 500),
       expect: () =>  <ProductState>[LoadingState(), ErrorState(error: ServerFailure().message)],
     );

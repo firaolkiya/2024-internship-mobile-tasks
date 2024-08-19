@@ -35,34 +35,42 @@ class ProductCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      productModel.name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Text(productModel.description)
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('\$${productModel.price}',
+                Expanded(
+                  child: Column(
+                    
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        productModel.name,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
-                    const Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                        ),
-                        Text('(4.0)', style: TextStyle(fontSize: 18))
-                      ],
-                    )
-                  ],
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Text(productModel.description)
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('\$${productModel.price}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.orange,
+                          ),
+                          Text('(4.0)', style: TextStyle(fontSize: 18))
+                        ],
+                      )
+                    ],
+                  ),
                 )
               ],
             )

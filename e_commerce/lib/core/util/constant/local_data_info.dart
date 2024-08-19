@@ -1,5 +1,6 @@
 
 import '../../../features/product/data/model/product_model.dart';
+import '../../../features/product/domain/entities/product_entity.dart';
 
 ///the key used to store on local data source
 // ignore: constant_identifier_names
@@ -16,3 +17,7 @@ List<ProductModel>listOfProducts = [
       description: 'high quality'
       )
     ];
+class LocalDataInfo {
+  LocalDataInfo._();
+  static List<ProductEntity> listOfProducts = [];
+}

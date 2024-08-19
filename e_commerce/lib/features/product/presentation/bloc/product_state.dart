@@ -37,3 +37,14 @@ final class ErrorState extends ProductState{
   @override
   List<Object?> get props => [error];
 }
+
+final class OnBoardingState extends ProductState{
+  @override
+  List<Object?> get props => [];
+  
+}
+
+final class LoginState extends ProductState{
+  @override
+  List<Object?> get props => [];
+}
