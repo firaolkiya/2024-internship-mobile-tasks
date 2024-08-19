@@ -15,10 +15,11 @@ import '../../widget/snack_bar.dart';
 import '../../widget/text_feild.dart';
 
 class AddProduct extends StatefulWidget {
-  const AddProduct({super.key});
+  const AddProduct({super.key,  this.id=''});
 
   @override
   State<AddProduct> createState() => _AddProductState();
+  final String id;
 }
 
 class _AddProductState extends State<AddProduct> {
@@ -153,7 +154,7 @@ class _AddProductState extends State<AddProduct> {
                               borderRadius: BorderRadius.circular(10)),
                           minimumSize: const Size(double.infinity, 60)),
                       onPressed: () {},
-                      child: const Text('Delete'))
+                      child: const Text('Update'))
                 ],
               ),
             ),

@@ -1,3 +1,4 @@
+import '../entities/user_entity.dart';
 import '../repository/user_repository.dart';
 
 class LogInUsecase {
@@ -5,7 +6,7 @@ class LogInUsecase {
 
   LogInUsecase({required this.userRepository});
 
-  Future<bool>execute(){
-    return userRepository.logIn();
+  Future<UserEntity>execute(String email,String password){
+    return userRepository.logIn(email,password);
   }
 }

@@ -1,3 +1,4 @@
+import '../entities/user_entity.dart';
 import '../repository/user_repository.dart';
 
 class LogOutUsecase{
@@ -5,7 +6,7 @@ class LogOutUsecase{
 
   LogOutUsecase({required this.userRepository});
 
-  Future<bool>execute(){
-    return userRepository.logOut();
+  Future<bool>execute(UserEntity user){
+    return userRepository.logOut(user);
   }
 }

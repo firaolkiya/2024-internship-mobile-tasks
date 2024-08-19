@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/util/constant/color.dart';
-import '../../../../../core/util/constant/spacing.dart';
-import '../../widget/custom_button.dart';
-import '../../widget/text_feild.dart';
-import '../../widget/write_text.dart';
+import '../../../../core/util/constant/color.dart';
+import '../../../../core/util/constant/spacing.dart';
+import '../../../product/presentation/widget/custom_button.dart';
+import '../../../product/presentation/widget/text_feild.dart';
+import '../../../product/presentation/widget/write_text.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -18,8 +18,12 @@ class _SignUpState extends State<SignUp> {
 
    @override
   Widget build(BuildContext context) {
+    final passwordInputController = TextEditingController();
+    final emailInputController = TextEditingController();   
     final nameInputController = TextEditingController();
-    return Scaffold(
+    final conformInputController = TextEditingController();
+
+     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -73,18 +77,18 @@ class _SignUpState extends State<SignUp> {
                 fontWeight: FontWeight.w200,
               ),
               AppSpacing.small,
-              InputField(controller: nameInputController),
+              InputField(controller: emailInputController),
               AppSpacing.small,
               writeText(
                   text: 'Password', fontSize: 18, fontWeight: FontWeight.w200),
               AppSpacing.small,
-              InputField(controller: nameInputController),
+              InputField(controller: passwordInputController),
 
               AppSpacing.small,
                 writeText(
                   text: 'Conform password', fontSize: 18, fontWeight: FontWeight.w200),
               AppSpacing.small,
-              InputField(controller: nameInputController),
+              InputField(controller: conformInputController),
               AppSpacing.extraLarge,
 
                 Row(

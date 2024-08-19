@@ -1,9 +1,11 @@
 import 'package:http/http.dart' as http;
 
+import '../../model/user_model.dart';
+
 abstract class UserRemoteDataSource {
-  Future<bool>signUp();
-  Future<bool>logIn();
-  Future<bool>logOut();
+  Future<bool>signUp(UserModel user);
+  Future<UserModel>logIn(String email, String password);
+  Future<bool>logOut(UserModel user);
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource{
@@ -11,19 +13,19 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
   UserRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<bool> logIn() {
+  Future<UserModel> logIn(String email, String password) {
     // TODO: implement logIn
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> logOut() {
+  Future<bool> logOut(UserModel user) {
     // TODO: implement logOut
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> signUp() {
+  Future<bool> signUp(UserModel user) {
     // TODO: implement signUp
     throw UnimplementedError();
   }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octo_image/octo_image.dart';
 
-import '../../../../../core/util/constant/color.dart';
-import '../../../../../core/util/constant/image.dart';
-import '../../../../../core/util/constant/spacing.dart';
-import '../product/presentation/bloc/product_bloc.dart';
-import '../product/presentation/bloc/product_state.dart';
-import '../product/presentation/pages/auth/login_page.dart';
-import '../product/presentation/widget/navigation_animation.dart/custom_slide_animaion.dart';
+import '../../../../../../../core/util/constant/color.dart';
+import '../../../../../../../core/util/constant/image.dart';
+import '../../../../../../../core/util/constant/spacing.dart';
+import '../../../product/presentation/bloc/product_bloc.dart';
+import '../../../product/presentation/bloc/product_state.dart';
+import 'login_page.dart';
+import '../../../product/presentation/widget/navigation_animation.dart/custom_slide_animaion.dart';
 
 
 class SplashScreen extends StatelessWidget {

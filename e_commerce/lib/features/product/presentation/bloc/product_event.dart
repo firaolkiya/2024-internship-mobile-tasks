@@ -39,3 +39,7 @@ final class FilteredListEvent extends ProductEvent{
 }
 final class LoginEvent extends ProductEvent{}
 final class StartEvent extends ProductEvent{}
+
+final class CreateAccountEvent extends ProductEvent{
+  
+}
