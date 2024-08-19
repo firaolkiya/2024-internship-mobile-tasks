@@ -1,4 +1,7 @@
+import 'package:dartz/dartz.dart';
+
 import '../../../../core/device/network_info/network_info.dart';
+import '../../../../core/error/failures/failures.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repository/user_repository.dart';
 import '../data_source/local_data_source/local_data_source.dart';
@@ -17,17 +20,17 @@ class UserRepositoryImpl implements UserRepository {
   });
 
   @override
-  Future<UserEntity> logIn(String email,String password) async{
+   Future<Either<Failure,UserEntity>>logIn(String email,String password) async{
     return remoteDataSource.logIn(email,password);
   }
 
   @override
-  Future<bool> logOut(UserEntity user) {
+   Future<Either<Failure,bool>> logOut(UserEntity user) {
     return remoteDataSource.logOut(user as UserModel);
   }
 
   @override
-  Future<bool> signUp(UserEntity user) {
+   Future<Either<Failure,bool>>signUp(UserEntity user) {
     return remoteDataSource.signUp(user as UserModel);
   }
 }

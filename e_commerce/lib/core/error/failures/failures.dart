@@ -24,6 +24,11 @@ class CachFailure extends Failure{
   
 }
 
+class GeneralFailure extends Failure{
+  GeneralFailure({ super.message = 'something is wrong, Please try again'});
+  
+}
+
 class TypeConvertionError extends Failure{
   TypeConvertionError({ super.message = 'unable to convert data'});
   

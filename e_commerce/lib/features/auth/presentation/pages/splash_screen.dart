@@ -5,10 +5,9 @@ import 'package:octo_image/octo_image.dart';
 import '../../../../../../../core/util/constant/color.dart';
 import '../../../../../../../core/util/constant/image.dart';
 import '../../../../../../../core/util/constant/spacing.dart';
-import '../../../product/presentation/bloc/product_bloc.dart';
-import '../../../product/presentation/bloc/product_state.dart';
-import 'login_page.dart';
 import '../../../product/presentation/widget/navigation_animation.dart/custom_slide_animaion.dart';
+import '../bloc/auth_bloc.dart';
+import 'login_page.dart';
 
 
 class SplashScreen extends StatelessWidget {
@@ -17,9 +16,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<ProductBloc, ProductState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if(state is LoginState){
+          if(state is FinishedSplashState){
             Navigator.of(context).pushReplacement(CustomSlideTransition(child: const LoginPage()));
           }
         },

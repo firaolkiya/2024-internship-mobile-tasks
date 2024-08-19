@@ -3,6 +3,14 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/device/network_info/network_info.dart';
+import 'features/auth/data/data_source/local_data_source/local_data_source.dart';
+import 'features/auth/data/data_source/remote_data_source/remote_data_source.dart';
+import 'features/auth/data/repository/user_repository_impl.dart';
+import 'features/auth/domain/repository/user_repository.dart';
+import 'features/auth/domain/usecases/log_in_usecase.dart';
+import 'features/auth/domain/usecases/log_out_usecase.dart';
+import 'features/auth/domain/usecases/sign_up_usecase.dart';
+import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/product/data/data sources/local/local_data_source.dart';
 import 'features/product/data/data sources/remote/remote_data_source.dart';
 import 'features/product/data/repository/product_repository_inpl.dart';
@@ -66,7 +74,20 @@ sl.registerFactory(
 
 // Register external dependencies
 
+//register for auth
 
+sl.registerLazySingleton<UserRemoteDataSource>(()=>UserRemoteDataSourceImpl(client: sl()));
+sl.registerLazySingleton<UserLocalDataSource>(()=>UserLocalDataSourceImpl(sharedPreferences: sl()));
+
+sl.registerLazySingleton<UserRepository>(()=>UserRepositoryImpl(remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
+
+
+//register auth usecase
+sl.registerLazySingleton(()=>SignUpUsecase(userRepository: sl()));
+sl.registerLazySingleton(()=>LogInUsecase(userRepository: sl()));
+sl.registerLazySingleton(()=>LogOutUsecase(userRepository: sl()));
+
+sl.registerFactory(()=>AuthBloc(sl(), sl(), sl()));
   
 } catch (e) {
 }

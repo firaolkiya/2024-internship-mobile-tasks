@@ -29,11 +29,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       required this.insertProductUsecase,
       required this.deleteProductUsecase})
       : super(InitialState()) {
-    on<StartEvent>((event,emit) async{
-      emit(InitialState());
-      await Future.delayed(const Duration(seconds: 5));
-      add(LoginEvent());
-    });
+    
     on<LoadAllProductEvent>((event, emit) async {
       emit(LoadingState());
       final result = await getAllProductUsecase.execute();
@@ -100,9 +96,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     });
 
     
-     on<LoginEvent>((event,emit){
-        emit(LoginState());
-    });
+  
     
    
    
