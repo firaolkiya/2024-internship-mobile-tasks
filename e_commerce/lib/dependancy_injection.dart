@@ -33,7 +33,7 @@ sl.registerSingleton<SharedPreferences>(sharedPreferences);
 sl.registerLazySingleton(() => http.Client());
   // Register data sources first
 sl.registerLazySingleton<ProductRemoteDataSource>(
-  () => ProductRemoteDataSourceImpl(client: sl()),
+  () => ProductRemoteDataSourceImpl(client: sl(),localDataSource: sl()),
 );
 
 sl.registerLazySingleton<ProductLocalDataSource>(
@@ -76,8 +76,8 @@ sl.registerFactory(
 
 //register for auth
 
-sl.registerLazySingleton<UserRemoteDataSource>(()=>UserRemoteDataSourceImpl(client: sl()));
 sl.registerLazySingleton<UserLocalDataSource>(()=>UserLocalDataSourceImpl(sharedPreferences: sl()));
+sl.registerLazySingleton<UserRemoteDataSource>(()=>UserRemoteDataSourceImpl(client: sl(),localDataSource: sl()));
 
 sl.registerLazySingleton<UserRepository>(()=>UserRepositoryImpl(remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
 

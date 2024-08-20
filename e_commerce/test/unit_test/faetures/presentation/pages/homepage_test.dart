@@ -45,7 +45,8 @@ void main() {
 
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-
+    final list = find.byType(Scrollable);
+    await tester.scrollUntilVisible(find.byType(ProductCard), 200.0, scrollable: list);
     expect(find.byType(ProductCard), findsAtLeastNWidgets(0));
 
 

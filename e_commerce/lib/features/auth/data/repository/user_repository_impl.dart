@@ -25,12 +25,12 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-   Future<Either<Failure,bool>> logOut(UserEntity user) {
-    return remoteDataSource.logOut(user as UserModel);
+   Future<Either<Failure,bool>> logOut() {
+    return remoteDataSource.logOut();
   }
 
   @override
    Future<Either<Failure,bool>>signUp(UserEntity user) {
-    return remoteDataSource.signUp(user as UserModel);
+    return remoteDataSource.signUp(UserModel.fromEntity(user));
   }
 }

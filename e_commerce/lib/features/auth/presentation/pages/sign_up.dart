@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/util/constant/color.dart';
 import '../../../../core/util/constant/spacing.dart';
 import '../../../product/presentation/widget/custom_button.dart';
+import '../../../product/presentation/widget/snack_bar.dart';
 import '../../../product/presentation/widget/text_feild.dart';
 import '../../../product/presentation/widget/write_text.dart';
+import '../bloc/auth_bloc.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -13,17 +17,16 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  
-  bool boxSelected =false;
+  bool boxSelected = false;
 
-   @override
+  @override
   Widget build(BuildContext context) {
     final passwordInputController = TextEditingController();
-    final emailInputController = TextEditingController();   
+    final emailInputController = TextEditingController();
     final nameInputController = TextEditingController();
     final conformInputController = TextEditingController();
 
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -48,102 +51,123 @@ class _SignUpState extends State<SignUp> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppSpacing.large,
-              writeText(
-                  text: 'Create your Account',
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-              AppSpacing.extraLarge,
-
-              writeText(
-                text: 'Name',
-                fontSize: 18,
-                fontWeight: FontWeight.w200,
-              ),
-              AppSpacing.small,
-              InputField(controller: nameInputController),
-              AppSpacing.small,
-
-
-              writeText(
-                text: 'Email',
-                fontSize: 18,
-                fontWeight: FontWeight.w200,
-              ),
-              AppSpacing.small,
-              InputField(controller: emailInputController),
-              AppSpacing.small,
-              writeText(
-                  text: 'Password', fontSize: 18, fontWeight: FontWeight.w200),
-              AppSpacing.small,
-              InputField(controller: passwordInputController),
-
-              AppSpacing.small,
-                writeText(
-                  text: 'Conform password', fontSize: 18, fontWeight: FontWeight.w200),
-              AppSpacing.small,
-              InputField(controller: conformInputController),
-              AppSpacing.extraLarge,
-
-                Row(
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if(state is LoginErrorState){
+            displaySnackBar(context, state.message);
+          }
+          if(state is LoggedInState){
+            displaySnackBar(context, 'created succesfully');
+          }
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(value: boxSelected, onChanged: (value){
-                    setState(() {
-                      boxSelected=value!;
-                    });
-                  }),
+                  AppSpacing.large,
+                   Center(
+                     child: Visibility(
+                      visible: state is LoginLoadingState,
+                      child: const CircularProgressIndicator()),
+                   ),
                   writeText(
-                      text: 'I understood the',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pop();
-                    },
-                    child: writeText(
-                      text: 'terms and policy',
-                      color: AppColor.blueColor,
-                      fontSize: 16,
-                    ),
-                  )
-                ],
-              ),
-
-              CustomButton(onPressed: () {
-                
-              }, text: 'Sign up'),
-              AppSpacing.medium,
-            
-              
-              Row(
-                children: [
+                      text: 'Create your Account',
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                  AppSpacing.extraLarge,
                   writeText(
-                      text: 'Have you an account?',
+                    text: 'Name',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w200,
+                  ),
+                  AppSpacing.small,
+                  InputField(controller: nameInputController,hint: 'ex. john smith',),
+                  AppSpacing.small,
+                  writeText(
+                    text: 'Email',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w200,
+                  ),
+                  AppSpacing.small,
+                  InputField(controller: emailInputController,hint: 'ex. johnsmith@gmail.com',),
+                  AppSpacing.small,
+                  writeText(
+                      text: 'Password',
                       fontSize: 18,
                       fontWeight: FontWeight.w200),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pop();
-                    },
-                    child: writeText(
-                      text: 'Log in',
-                      color: AppColor.blueColor,
-                      fontSize: 20,
-                    ),
+                  AppSpacing.small,
+                  InputField(controller: passwordInputController,hint: 'ex. firaolkiya',isPassword: true,),
+                  AppSpacing.small,
+                  writeText(
+                      text: 'Conform password',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200),
+                  AppSpacing.small,
+                  InputField(controller: conformInputController,hint: 'ex. firaolkiya',isPassword: true),
+                  AppSpacing.extraLarge,
+                  Row(
+                    children: [
+                      Checkbox(
+                          value: boxSelected,
+                          onChanged: (value) {
+                            setState(() {
+                              boxSelected = value!;
+                            });
+                          }),
+                      writeText(
+                          text: 'I understood the',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: writeText(
+                          text: 'terms and policy',
+                          color: AppColor.blueColor,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
+                  CustomButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(SignUpEvent(
+                              email: emailInputController.text,
+                              name: nameInputController.text,
+                              password: passwordInputController.text,
+                              conformPassword: conformInputController.text,
+                            ));
+                      },
+                      text: 'Sign up'
+                      ),
+                  AppSpacing.medium,
+                  Row(
+                    children: [
+                      writeText(
+                          text: 'Have you an account?',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w200),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: writeText(
+                          text: 'Log in',
+                          color: AppColor.blueColor,
+                          fontSize: 20,
+                        ),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -11,16 +11,17 @@ final class AuthInitial extends AuthState {}
 
 final class FinishedSplashState extends AuthState{}
 
-final class LoadingState extends AuthState{}
+final class LoginLoadingState extends AuthState{}
 
 final class LoggedInState extends AuthState{
   final UserEntity userEntity;
 
   const LoggedInState({required this.userEntity});
 }
+final class LoggedOutState extends AuthState{}
 
-final class ErrorState extends AuthState{
+final class LoginErrorState extends AuthState{
   final String message;
 
-  const ErrorState({required this.message});
+  const LoginErrorState({required this.message});
 }

@@ -44,7 +44,4 @@ final class OnBoardingState extends ProductState{
   
 }
 
-final class LoginState extends ProductState{
-  @override
-  List<Object?> get props => [];
-}
+

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/util/constant/spacing.dart';
 import '../../../../../core/util/constant/string.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../bloc/product_bloc.dart';
@@ -10,6 +11,7 @@ import '../../bloc/product_state.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/navigation_animation.dart/custom_slide_animaion.dart';
 import '../../widget/snack_bar.dart';
+import '../../widget/write_text.dart';
 import 'edit_screen.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -48,8 +50,9 @@ class DetailScreen extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image(image: NetworkImage(productModel.imageUrl)),
                   Row(
@@ -72,7 +75,8 @@ class DetailScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 20)),
                     ],
                   ),
-                  const Text('Size'),
+                  AppSpacing.extraLarge,
+                  writeText(text: 'Size',fontSize: 20),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(children: number),
@@ -82,30 +86,40 @@ class DetailScreen extends StatelessWidget {
                       child: const CircularProgressIndicator()),
                   Text(AppString.shoesDescription),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
+
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        OutlinedButton(
-                            onPressed: () {
-                              context
-                                  .read<ProductBloc>()
-                                  .add(DeleteProductEvent(id: productModel.id));
-                            },
-                            style: OutlinedButton.styleFrom(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            child: const Text('Delete')),
-                        CustomButton(
-                          text: 'Update',
-                          onPressed: () {
-                          
-                          Navigator.of(context).push(CustomSlideTransition(
-                              child: EditScreen(id: productModel.id)));
-                        }),
+                        Expanded(
+                          child: OutlinedButton(
+                            
+                              onPressed: () {
+                                context
+                                    .read<ProductBloc>()
+                                    .add(DeleteProductEvent(id: productModel.id));
+                              },
+                              style: OutlinedButton.styleFrom(
+                                minimumSize: const Size(double.infinity, 50),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 40),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
+                              ),
+                              child: const Text('Delete')
+                              ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: CustomButton(
+                              text: 'Update',
+                              onPressed: () {
+                              Navigator.of(context).push(CustomSlideTransition(
+                                  child: EditScreen(id: productModel.id)));
+                            }),
+                          ),
+                        ),
                       ],
                     ),
                   )

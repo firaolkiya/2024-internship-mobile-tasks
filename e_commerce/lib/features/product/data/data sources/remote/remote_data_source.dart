@@ -5,6 +5,7 @@ import 'package:http_parser/http_parser.dart';
 import '../../../../../core/error/failures/failures.dart';
 import '../../../../../core/util/constant/remote_data_info.dart';
 import '../../model/product_model.dart';
+import '../local/local_data_source.dart';
 
 abstract class ProductRemoteDataSource {
   ///it return string as response if success otherwise throws an exception
@@ -26,13 +27,20 @@ abstract class ProductRemoteDataSource {
 
 class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   final http.Client client;
+  final ProductLocalDataSource localDataSource;
 
-  ProductRemoteDataSourceImpl({required this.client});
+  ProductRemoteDataSourceImpl({required this.localDataSource, required this.client});
 
   @override
   Future<bool> deleteProduct({required String id}) async {
-    final response =
-        await client.delete(Uri.parse(RemoteDataInfo.getProductUrl(id)));
+    final tokenKey = await localDataSource.getTokenKey();
+      if(tokenKey==null){
+        throw GeneralFailure(message: 'user logout');
+      }
+
+    final response = await client.delete(Uri.parse(RemoteDataInfo.getProductUrl(id)),
+                    headers: {'Authorization': 'Bearer $tokenKey'}
+                    );
     if (response.statusCode == 200) {
       return response.body == '1';
     }
@@ -42,7 +50,13 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   @override
   Future<List<ProductModel>> getAllProduct() async {
     try {
-      final response = await client.get(Uri.parse(RemoteDataInfo.baseUrl));
+      final tokenKey = await localDataSource.getTokenKey();
+      if(tokenKey==null){
+        throw GeneralFailure(message: 'user logout');
+      }
+      final response = await client.get(Uri.parse(RemoteDataInfo.baseUrl),
+          headers: {'Authorization': 'Bearer $tokenKey'}
+      );
       if (response.statusCode != 200) {
         throw NetworkFailure();
       }
@@ -60,8 +74,13 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   @override
   Future<ProductModel> getProduct({required String id}) async {
     try {
-      final response =
-          await client.get(Uri.parse(RemoteDataInfo.getProductUrl(id)));
+      final tokenKey = await localDataSource.getTokenKey();
+      if(tokenKey==null){
+        throw GeneralFailure(message: 'user logout');
+      }
+      final response = await client.get(Uri.parse(RemoteDataInfo.getProductUrl(id)),
+                          headers: {'Authorization': 'Bearer $tokenKey'}
+                          );
 
       if (response.statusCode == 200) {
         return ProductModel.fromJson(await json.decode(response.body));
@@ -76,8 +95,12 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   @override
   Future<bool> insertProduct({required ProductModel productModel}) async {
     try {
+      final tokenKey = await localDataSource.getTokenKey();
+      if(tokenKey==null){
+        throw GeneralFailure(message: 'user logout');
+      }
       final uri = Uri.parse(RemoteDataInfo.baseUrl);
-      final request = http.MultipartRequest('POST', uri);
+      final request = http.MultipartRequest('POST', uri,);
 
       request.fields['name'] = productModel.name;
       request.fields['description'] = productModel.description;
@@ -89,7 +112,9 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
         contentType: MediaType('image', 'jpg'),
       )); // Since we're using a placeholder
       //request.headers.addAll(RemoteDataInfo.jsonHeader);
-
+      request.headers.addAll({
+        'Authorization': 'Bearer $tokenKey'
+      });
       final response = await request.send();
       if (response.statusCode == 201) {
         
@@ -107,15 +132,18 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
     required String id,
     required ProductModel productModel,
   }) async {
+      final tokenKey = await localDataSource.getTokenKey();
+      if(tokenKey==null){
+        throw GeneralFailure(message: 'user logout');
+      }
     final response = await http.put(
-      Uri.parse(
-          '${RemoteDataInfo.baseUrl}/$id'), // Assuming the URL includes the product ID
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'name': productModel.name,
-        'price': productModel.price,
-        'description': productModel.description,
-      }),
+      Uri.parse('${RemoteDataInfo.baseUrl}/$id'), // Assuming the URL includes the product ID
+                  headers: {'Authorization': 'Bearer $tokenKey'},
+                  body: jsonEncode({
+                    'name': productModel.name,
+                    'price': productModel.price,
+                    'description': productModel.description,
+                  }),
     );
 
     if (response.statusCode == 200) {
@@ -123,7 +151,6 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       return jsonDecode(response.body)['success'] == true;
     } else {
       // Log or handle the error
-      print('Failed to update product: ${response.statusCode}');
       return false;
     }
   }

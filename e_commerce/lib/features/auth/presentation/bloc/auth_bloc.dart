@@ -21,22 +21,53 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<SignUpEvent>((event, emit) async{
-      emit(LoadingState());
+      emit(LoginLoadingState());
       UserEntity userEntity = UserEntity(email: event.email,name: event.name,password: event.password,);
       final result = await signUpUsecase.execute(userEntity);
 
       result.fold((error){
-        emit(ErrorState(message: error.message));
+        emit(LoginErrorState(message: error.message));
       }, (status){
         if(status){
           emit(LoggedInState(userEntity: userEntity));
         }
         else{
-                  emit(const ErrorState(message: 'unable to create account, please try later'));
+         emit(const LoginErrorState(message: 'unable to create account, please try later'));
 
         }
       });
 
+      on<LogOutEvent>((event, emit) async{
+         emit(LoginLoadingState());
+          final result = await logOutUsecase.execute();
+          result.fold((error){
+            emit(LoginErrorState(message: error.message));
+          }, (value){
+            emit(LoggedOutState());
+          });
+      });
+
     });
+
+    on<LoginEvent>((event,emit) async{
+      emit(LoginLoadingState());
+      final result = await logInUsecase.execute(event.email, event.password);
+      result.fold((error){
+        emit(LoginErrorState(message: error.message));
+      }, (res){
+        emit(LoggedInState(userEntity: res));
+      });
+
+      on<LogOutEvent>((event, emit) async{
+         emit(LoginLoadingState());
+         final result = await logOutUsecase.execute();
+         result.fold((error){
+            emit(LoginErrorState(message: error.message));
+         }, (ifRight){
+          emit(LoggedOutState());
+         });
+      },);
+    });
+
   }
 }

@@ -18,12 +18,14 @@ void main() {
   
   late ProductRemoteDataSource remoteDataSource;
   late MockHttpClient httpClient;
+  late MockProductLocalDataSource localDataSource;
   
   setUp(
     () {
     WidgetsFlutterBinding.ensureInitialized();
     httpClient = MockHttpClient();
-    remoteDataSource = ProductRemoteDataSourceImpl(client: httpClient);
+    localDataSource = MockProductLocalDataSource();
+    remoteDataSource = ProductRemoteDataSourceImpl(client: httpClient,localDataSource: localDataSource);
     },
   );
 

@@ -16,6 +16,9 @@ abstract class ProductLocalDataSource{
    ///it return string as response if success otherwise throws an exception
   Future<bool> removeFromCach({required String id});
 
+  Future<String?>getTokenKey();
+  Future<bool>deleteToken();
+
   ///it return [List<ProductModel>] as response if success otherwise throws an exception
   Future<List<ProductModel>>? getAllFromCach() ;
 
@@ -110,10 +113,8 @@ try {
     }
   }
 
-  print(listOfProducts);
   return listOfProducts;
 } catch (e) {
-  print('Exception: ${e.toString()}');
   throw CachFailure();
 }
     
@@ -168,6 +169,16 @@ try {
     } catch (e) {
       throw CachFailure();
     }
+  }
+  
+  @override
+  Future<String?> getTokenKey() async{
+    return sharedPreferences.getString(userTokenKey);
+  }
+  
+  @override
+  Future<bool> deleteToken() {
+    return sharedPreferences.setString(userTokenKey, '');
   }
   
 }

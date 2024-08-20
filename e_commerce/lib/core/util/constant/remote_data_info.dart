@@ -6,4 +6,5 @@ class RemoteDataInfo {
   static String loginKey = 'https://g5-flutter-learning-path-be.onrender.com/api/v2/auth/login';
   static String register = 'https://g5-flutter-learning-path-be.onrender.com/api/v2/auth/register';
   static const Map<String, String> jsonHeader = {'Content-Type': 'application/json'};
+  static String userKey  = 'https://g5-flutter-learning-path-be.onrender.com/api/v2/users/me';
 }

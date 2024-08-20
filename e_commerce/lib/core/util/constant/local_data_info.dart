@@ -5,6 +5,7 @@ import '../../../features/product/domain/entities/product_entity.dart';
 ///the key used to store on local data source
 // ignore: constant_identifier_names
 const String product_key = 'products_key';
+const String userTokenKey = 'user_token_key';
 
 
 ///is to temprarly store all product list from local data source and api
