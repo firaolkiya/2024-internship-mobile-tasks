@@ -22,6 +22,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SignUpEvent>((event, emit) async{
       emit(LoginLoadingState());
+      print('password: ${event.password},conform: ${event.conformPassword}');
+      if(event.password!=event.conformPassword){
+        emit(const LoginErrorState(message: 'conform password must the same as password'));
+        return;
+      }
+      else{
       UserEntity userEntity = UserEntity(email: event.email,name: event.name,password: event.password,);
       final result = await signUpUsecase.execute(userEntity);
 
@@ -35,8 +41,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
          emit(const LoginErrorState(message: 'unable to create account, please try later'));
 
         }
-      });
 
+      });
+      }
       on<LogOutEvent>((event, emit) async{
          emit(LoginLoadingState());
           final result = await logOutUsecase.execute();

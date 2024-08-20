@@ -18,14 +18,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool boxSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final passwordInputController = TextEditingController();
+   final passwordInputController = TextEditingController();
     final emailInputController = TextEditingController();
     final nameInputController = TextEditingController();
     final conformInputController = TextEditingController();
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -39,10 +38,11 @@ class _SignUpState extends State<SignUp> {
         ),
         actions: [
           Container(
+            margin: const EdgeInsets.only(right: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                border: Border.all(color: Colors.lightBlue, width: 0.5)),
+                color: Colors.transparent,
+                border: Border.all(color: Colors.grey, width: 0.5)),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
             child: const Text(
               'ECOM',
@@ -68,11 +68,6 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppSpacing.large,
-                   Center(
-                     child: Visibility(
-                      visible: state is LoginLoadingState,
-                      child: const CircularProgressIndicator()),
-                   ),
                   writeText(
                       text: 'Create your Account',
                       fontSize: 24,
@@ -99,14 +94,14 @@ class _SignUpState extends State<SignUp> {
                       fontSize: 18,
                       fontWeight: FontWeight.w200),
                   AppSpacing.small,
-                  InputField(controller: passwordInputController,hint: 'ex. firaolkiya',isPassword: true,),
+                  InputField(controller: passwordInputController,hint: '********',isPassword: true,),
                   AppSpacing.small,
                   writeText(
                       text: 'Conform password',
                       fontSize: 18,
                       fontWeight: FontWeight.w200),
                   AppSpacing.small,
-                  InputField(controller: conformInputController,hint: 'ex. firaolkiya',isPassword: true),
+                  InputField(controller: conformInputController,hint: '*********',isPassword: true),
                   AppSpacing.extraLarge,
                   Row(
                     children: [
@@ -134,13 +129,16 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                   CustomButton(
+                    enable: state is! LoginLoadingState,
                       onPressed: () {
+                        if(state is! LoginLoadingState){
                         context.read<AuthBloc>().add(SignUpEvent(
                               email: emailInputController.text,
                               name: nameInputController.text,
                               password: passwordInputController.text,
                               conformPassword: conformInputController.text,
                             ));
+                        }
                       },
                       text: 'Sign up'
                       ),

@@ -46,9 +46,9 @@ class LoginPage extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 100, bottom: 50),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
+                            color: Colors.transparent,
                             border:
-                                Border.all(color: Colors.lightBlue, width: 0.5)),
+                                Border.all(color: Colors.grey, width: 0.5)),
                         padding:
                             const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
                         child: const Text(
@@ -58,11 +58,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Center(
-                     child: Visibility(
-                      visible: state is LoginLoadingState,
-                      child: const CircularProgressIndicator()),
-                   ),
+                
                   writeText(
                       text: 'Sign into your Account',
                       fontSize: 24,
@@ -76,10 +72,14 @@ class LoginPage extends StatelessWidget {
                   writeText(
                       text: 'Password', fontSize: 20, fontWeight: FontWeight.w200),
                   AppSpacing.small,
-                  InputField(controller: passwordInputController,isPassword: true,hint: 'firaolkiya',),
+                  InputField(controller: passwordInputController,isPassword: true,hint: '********',),
                   AppSpacing.extraLarge,
-                  CustomButton(onPressed: () {
-                    context.read<AuthBloc>().add(LoginEvent(email: emailInputController.text, password: passwordInputController.text));
+                  CustomButton(
+                    enable: state is! LoginLoadingState,
+                    onPressed: () {
+                      if(state is! LoginLoadingState){
+                          context.read<AuthBloc>().add(LoginEvent(email: emailInputController.text, password: passwordInputController.text));
+                      }
                   }, text: 'Login'),
                   const SizedBox(
                     height: 60,
