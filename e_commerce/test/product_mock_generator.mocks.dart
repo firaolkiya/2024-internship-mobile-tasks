@@ -4,12 +4,21 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i14;
-import 'dart:convert' as _i27;
-import 'dart:typed_data' as _i28;
+import 'dart:convert' as _i32;
+import 'dart:typed_data' as _i33;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:e_commerce/core/device/network_info/network_info.dart' as _i19;
 import 'package:e_commerce/core/error/failures/failures.dart' as _i15;
+import 'package:e_commerce/features/auth/data/data_source/local_data_source/local_data_source.dart'
+    as _i30;
+import 'package:e_commerce/features/auth/data/data_source/remote_data_source/remote_data_source.dart'
+    as _i28;
+import 'package:e_commerce/features/auth/data/model/user_model.dart' as _i29;
+import 'package:e_commerce/features/auth/domain/entities/user_entity.dart'
+    as _i27;
+import 'package:e_commerce/features/auth/domain/repository/user_repository.dart'
+    as _i26;
 import 'package:e_commerce/features/auth/domain/usecases/log_in_usecase.dart'
     as _i11;
 import 'package:e_commerce/features/auth/domain/usecases/log_out_usecase.dart'
@@ -17,7 +26,7 @@ import 'package:e_commerce/features/auth/domain/usecases/log_out_usecase.dart'
 import 'package:e_commerce/features/auth/domain/usecases/sign_up_usecase.dart'
     as _i10;
 import 'package:e_commerce/features/auth/presentation/bloc/auth_bloc.dart'
-    as _i26;
+    as _i31;
 import 'package:e_commerce/features/product/data/data%20sources/local/local_data_source.dart'
     as _i17;
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart'
@@ -1053,10 +1062,186 @@ class MockProductBloc extends _i1.Mock implements _i21.ProductBloc {
       );
 }
 
+/// A class which mocks [UserRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserRepository extends _i1.Mock implements _i26.UserRepository {
+  MockUserRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, bool>> signUp(_i27.UserEntity? user) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [user],
+        ),
+        returnValue: _i14.Future<_i2.Either<_i15.Failure, bool>>.value(
+            _FakeEither_0<_i15.Failure, bool>(
+          this,
+          Invocation.method(
+            #signUp,
+            [user],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, bool>>);
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, _i27.UserEntity>> logIn(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #logIn,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue:
+            _i14.Future<_i2.Either<_i15.Failure, _i27.UserEntity>>.value(
+                _FakeEither_0<_i15.Failure, _i27.UserEntity>(
+          this,
+          Invocation.method(
+            #logIn,
+            [
+              email,
+              password,
+            ],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, _i27.UserEntity>>);
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, bool>> logOut() => (super.noSuchMethod(
+        Invocation.method(
+          #logOut,
+          [],
+        ),
+        returnValue: _i14.Future<_i2.Either<_i15.Failure, bool>>.value(
+            _FakeEither_0<_i15.Failure, bool>(
+          this,
+          Invocation.method(
+            #logOut,
+            [],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, bool>>);
+}
+
+/// A class which mocks [UserRemoteDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserRemoteDataSource extends _i1.Mock
+    implements _i28.UserRemoteDataSource {
+  MockUserRemoteDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, bool>> signUp(_i29.UserModel? user) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [user],
+        ),
+        returnValue: _i14.Future<_i2.Either<_i15.Failure, bool>>.value(
+            _FakeEither_0<_i15.Failure, bool>(
+          this,
+          Invocation.method(
+            #signUp,
+            [user],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, bool>>);
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, _i29.UserModel>> logIn(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #logIn,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue:
+            _i14.Future<_i2.Either<_i15.Failure, _i29.UserModel>>.value(
+                _FakeEither_0<_i15.Failure, _i29.UserModel>(
+          this,
+          Invocation.method(
+            #logIn,
+            [
+              email,
+              password,
+            ],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, _i29.UserModel>>);
+
+  @override
+  _i14.Future<_i2.Either<_i15.Failure, bool>> logOut() => (super.noSuchMethod(
+        Invocation.method(
+          #logOut,
+          [],
+        ),
+        returnValue: _i14.Future<_i2.Either<_i15.Failure, bool>>.value(
+            _FakeEither_0<_i15.Failure, bool>(
+          this,
+          Invocation.method(
+            #logOut,
+            [],
+          ),
+        )),
+      ) as _i14.Future<_i2.Either<_i15.Failure, bool>>);
+}
+
+/// A class which mocks [UserLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserLocalDataSource extends _i1.Mock
+    implements _i30.UserLocalDataSource {
+  MockUserLocalDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.Future<bool> logIn(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #logIn,
+          [token],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> logOut() => (super.noSuchMethod(
+        Invocation.method(
+          #logOut,
+          [],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+
+  @override
+  _i14.Future<bool> isLoggedIn() => (super.noSuchMethod(
+        Invocation.method(
+          #isLoggedIn,
+          [],
+        ),
+        returnValue: _i14.Future<bool>.value(false),
+      ) as _i14.Future<bool>);
+}
+
 /// A class which mocks [AuthBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
+class MockAuthBloc extends _i1.Mock implements _i31.AuthBloc {
   MockAuthBloc() {
     _i1.throwOnMissingStub(this);
   }
@@ -1089,19 +1274,19 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       ) as _i12.LogOutUsecase);
 
   @override
-  _i26.AuthState get state => (super.noSuchMethod(
+  _i31.AuthState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _i23.dummyValue<_i26.AuthState>(
+        returnValue: _i23.dummyValue<_i31.AuthState>(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i26.AuthState);
+      ) as _i31.AuthState);
 
   @override
-  _i14.Stream<_i26.AuthState> get stream => (super.noSuchMethod(
+  _i14.Stream<_i31.AuthState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i14.Stream<_i26.AuthState>.empty(),
-      ) as _i14.Stream<_i26.AuthState>);
+        returnValue: _i14.Stream<_i31.AuthState>.empty(),
+      ) as _i14.Stream<_i31.AuthState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -1110,7 +1295,7 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       ) as bool);
 
   @override
-  void add(_i26.AuthEvent? event) => super.noSuchMethod(
+  void add(_i31.AuthEvent? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -1119,7 +1304,7 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       );
 
   @override
-  void onEvent(_i26.AuthEvent? event) => super.noSuchMethod(
+  void onEvent(_i31.AuthEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -1128,7 +1313,7 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       );
 
   @override
-  void emit(_i26.AuthState? state) => super.noSuchMethod(
+  void emit(_i31.AuthState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -1137,8 +1322,8 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       );
 
   @override
-  void on<E extends _i26.AuthEvent>(
-    _i25.EventHandler<E, _i26.AuthState>? handler, {
+  void on<E extends _i31.AuthEvent>(
+    _i25.EventHandler<E, _i31.AuthState>? handler, {
     _i25.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
@@ -1152,7 +1337,7 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
 
   @override
   void onTransition(
-          _i25.Transition<_i26.AuthEvent, _i26.AuthState>? transition) =>
+          _i25.Transition<_i31.AuthEvent, _i31.AuthState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -1172,7 +1357,7 @@ class MockAuthBloc extends _i1.Mock implements _i26.AuthBloc {
       ) as _i14.Future<void>);
 
   @override
-  void onChange(_i25.Change<_i26.AuthState>? change) => super.noSuchMethod(
+  void onChange(_i25.Change<_i31.AuthState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -1268,7 +1453,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i27.Encoding? encoding,
+    _i32.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1299,7 +1484,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i27.Encoding? encoding,
+    _i32.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1330,7 +1515,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i27.Encoding? encoding,
+    _i32.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1361,7 +1546,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i27.Encoding? encoding,
+    _i32.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1409,7 +1594,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
       ) as _i14.Future<String>);
 
   @override
-  _i14.Future<_i28.Uint8List> readBytes(
+  _i14.Future<_i33.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -1419,8 +1604,8 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i14.Future<_i28.Uint8List>.value(_i28.Uint8List(0)),
-      ) as _i14.Future<_i28.Uint8List>);
+        returnValue: _i14.Future<_i33.Uint8List>.value(_i33.Uint8List(0)),
+      ) as _i14.Future<_i33.Uint8List>);
 
   @override
   _i14.Future<_i13.StreamedResponse> send(_i13.BaseRequest? request) =>

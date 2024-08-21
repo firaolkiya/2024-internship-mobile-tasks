@@ -1,5 +1,9 @@
 // ignore: depend_on_referenced_packages
 import 'package:e_commerce/core/device/network_info/network_info.dart';
+import 'package:e_commerce/features/auth/data/data_source/local_data_source/local_data_source.dart';
+import 'package:e_commerce/features/auth/data/data_source/remote_data_source/remote_data_source.dart';
+import 'package:e_commerce/features/auth/data/repository/user_repository_impl.dart';
+import 'package:e_commerce/features/auth/domain/repository/user_repository.dart';
 import 'package:e_commerce/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:e_commerce/features/product/data/data%20sources/local/local_data_source.dart';
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart';
@@ -29,6 +33,9 @@ import 'package:shared_preferences/shared_preferences.dart';
     GetProductUsecase,
     ProductBloc,
 
+    UserRepository,
+    UserRemoteDataSource,
+    UserLocalDataSource,
     AuthBloc
   ],
   customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],
