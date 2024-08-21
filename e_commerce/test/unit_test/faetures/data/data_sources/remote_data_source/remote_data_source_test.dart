@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 
+import 'package:e_commerce/core/constant/remote_data_info.dart';
 import 'package:e_commerce/core/error/failures/failures.dart';
-import 'package:e_commerce/core/util/constant/remote_data_info.dart';
 import 'package:e_commerce/features/product/data/data%20sources/remote/remote_data_source.dart';
 import 'package:e_commerce/features/product/data/model/product_model.dart';
 import 'package:flutter/widgets.dart';

@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/device/network_info/network_info.dart';
 import '../../../../core/error/failures/failures.dart';
-import '../../../../core/util/constant/local_data_info.dart';
+import '../../../../core/constant/local_data_info.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/repository/product_repository.dart';
 import '../data sources/local/local_data_source.dart';

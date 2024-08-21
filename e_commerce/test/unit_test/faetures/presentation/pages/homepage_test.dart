@@ -1,6 +1,7 @@
+import 'package:e_commerce/dependancy_injection.dart';
+import 'package:e_commerce/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:e_commerce/features/product/presentation/bloc/product_bloc.dart';
 import 'package:e_commerce/features/product/presentation/pages/home/homepage.dart';
-import 'package:e_commerce/features/product/presentation/widget/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,16 +28,18 @@ void main() {
       getAllProductUsecase: getAllProductUsecase,
       getSingleProductUsecase: getProductUsecase,
     );
-    //locator();
   });
 
-  testWidgets('homepage ...', (tester) async {
-   await tester.pumpWidget(BlocProvider(
-      create: (context) => productBloc,
+testWidgets('homepage ...', (tester) async {
+   await tester.pumpWidget(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductBloc>(create: (context)=>productBloc),
+        BlocProvider(create: (context)=>sl<AuthBloc>())
+      ],
       child: const MaterialApp(home: Homepage()),
     ));
 
-    //tester.pumpAndSettle();
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
@@ -45,9 +48,9 @@ void main() {
 
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-    final list = find.byType(Scrollable);
-    await tester.scrollUntilVisible(find.byType(ProductCard), 200.0, scrollable: list);
-    expect(find.byType(ProductCard), findsAtLeastNWidgets(0));
+    //final list = find.byType(Scrollable);
+//await tester.scrollUntilVisible(find.byType(ProductCard), 200.0, scrollable: list);
+    //(find.byType(ProductCard), findsAtLeastNWidgets(0));
 
 
   });

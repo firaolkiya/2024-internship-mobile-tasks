@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octo_image/octo_image.dart';
 
-import '../../../../../../../core/util/constant/color.dart';
-import '../../../../../../../core/util/constant/image.dart';
-import '../../../../../../../core/util/constant/spacing.dart';
+import '../../../../core/constant/color.dart';
+import '../../../../core/constant/image.dart';
+import '../../../../core/constant/spacing.dart';
 import '../../../product/presentation/widget/navigation_animation.dart/custom_slide_animaion.dart';
 import '../bloc/auth_bloc.dart';
 import 'login_page.dart';

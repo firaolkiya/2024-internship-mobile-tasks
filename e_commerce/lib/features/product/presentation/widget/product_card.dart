@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
 
+import '../../../../core/constant/color.dart';
 import '../../domain/entities/product_entity.dart';
 import 'on_load_image_failed.dart';
 
@@ -25,10 +26,11 @@ class ProductCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 child: OctoImage.fromSet(
                   filterQuality: FilterQuality.high,
+                  
                   image: NetworkImage(productModel.imageUrl),
                   octoSet:OctoSet(
                     errorBuilder: (context, error, stackTrace) =>imageLoadFailed(),
-                  progressIndicatorBuilder: (context, progress) => const CircularProgressIndicator(),
+                  progressIndicatorBuilder: (context, progress) =>  const CircularProgressIndicator(color: AppColor.blueColor,strokeWidth: 8,),
                   )
               
                 )),

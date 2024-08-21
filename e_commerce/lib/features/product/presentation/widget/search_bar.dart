@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/util/constant/color.dart';
-import '../../../../core/util/constant/spacing.dart';
+import '../../../../core/constant/color.dart';
+import '../../../../core/constant/spacing.dart';
 import '../bloc/product_bloc.dart';
 import '../bloc/product_event.dart';
 import '../bloc/product_state.dart';

@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../core/error/failures/failures.dart';
-import '../../../../../core/util/constant/remote_data_info.dart';
+import '../../../../../core/constant/remote_data_info.dart';
 import '../../model/user_model.dart';
 import '../local_data_source/local_data_source.dart';
 

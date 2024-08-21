@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/util/constant/color.dart';
+import '../../../../core/constant/color.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

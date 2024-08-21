@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/util/constant/color.dart';
-import '../../../../core/util/constant/spacing.dart';
+import '../../../../core/constant/color.dart';
+import '../../../../core/constant/spacing.dart';
 import '../../../product/presentation/widget/custom_button.dart';
 import '../../../product/presentation/widget/snack_bar.dart';
 import '../../../product/presentation/widget/text_feild.dart';

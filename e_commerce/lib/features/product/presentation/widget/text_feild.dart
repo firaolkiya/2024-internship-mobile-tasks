@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/util/constant/color.dart';
+import '../../../../core/constant/color.dart';
 
 class InputField extends StatelessWidget {
   const InputField({super.key, required this.controller,  this.hint='',  this.isPassword=false});

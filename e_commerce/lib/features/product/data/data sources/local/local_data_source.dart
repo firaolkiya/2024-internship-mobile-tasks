@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/error/failures/failures.dart';
-import '../../../../../core/util/constant/local_data_info.dart';
+import '../../../../../core/constant/local_data_info.dart';
 import '../../model/product_model.dart';
 
 abstract class ProductLocalDataSource{

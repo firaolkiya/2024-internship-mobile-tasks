@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../core/util/constant/local_data_info.dart';
+import '../../../../../core/constant/local_data_info.dart';
 
 abstract class UserLocalDataSource {
   Future<bool>logIn(String token);

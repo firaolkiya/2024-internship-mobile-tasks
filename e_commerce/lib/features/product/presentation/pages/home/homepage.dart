@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/util/constant/color.dart';
-import '../../../../../core/util/constant/image.dart';
+import '../../../../../core/constant/color.dart';
+import '../../../../../core/constant/image.dart';
 import '../../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../bloc/product_bloc.dart';
 import '../../bloc/product_state.dart';

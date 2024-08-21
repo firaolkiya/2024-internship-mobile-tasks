@@ -1,8 +1,8 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/core/constant/local_data_info.dart';
 import 'package:e_commerce/core/error/failures/failures.dart';
-import 'package:e_commerce/core/util/constant/local_data_info.dart';
 import 'package:e_commerce/features/product/presentation/bloc/product_bloc.dart';
 import 'package:e_commerce/features/product/presentation/bloc/product_event.dart';
 import 'package:e_commerce/features/product/presentation/bloc/product_state.dart';

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/util/constant/image.dart';
+import '../../../../core/constant/image.dart';
 
 Widget imageLoadFailed(){
   return Container(

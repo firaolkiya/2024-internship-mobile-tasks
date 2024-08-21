@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../error/failures/failures.dart';
+import '../error/failures/failures.dart';
 
 class ProductIdGenerator {
   ProductIdGenerator._();

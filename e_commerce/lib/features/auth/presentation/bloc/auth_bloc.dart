@@ -22,7 +22,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SignUpEvent>((event, emit) async{
       emit(LoginLoadingState());
-      print('password: ${event.password},conform: ${event.conformPassword}');
       if(event.password!=event.conformPassword){
         emit(const LoginErrorState(message: 'conform password must the same as password'));
         return;

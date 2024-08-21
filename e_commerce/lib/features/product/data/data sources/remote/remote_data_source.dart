@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import '../../../../../core/error/failures/failures.dart';
-import '../../../../../core/util/constant/remote_data_info.dart';
+import '../../../../../core/constant/remote_data_info.dart';
 import '../../model/product_model.dart';
 import '../local/local_data_source.dart';
 
