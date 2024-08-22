@@ -13,7 +13,7 @@ List<ProductModel>listOfProducts = [
   ProductModel(
       id: '1', 
       price: 250,
-      imageUrl: 'asset/image/shoes',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1PuyI0WpFeMpinpeNagmO4lV1o5iGGsB3jA&s',
       name: 'shoes',
       description: 'high quality'
       )

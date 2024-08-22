@@ -103,7 +103,7 @@ void main() {
          group('insert product', () {
             test('should return failed message', () async { 
             when(remoteDataSource.insertProduct(productModel: anyNamed('productModel')))
-            .thenThrow(ServerFailure(message: 'unable to insert data'));
+            .thenThrow(const ServerFailure(message: 'unable to insert data'));
             final result = await repository.insertProduct(product: productModel.toProductEntity());
 
              verify(remoteDataSource.insertProduct(productModel: anyNamed('productModel'))).called(1);

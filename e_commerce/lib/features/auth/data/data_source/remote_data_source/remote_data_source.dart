@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../../core/error/failures/failures.dart';
 import '../../../../../core/constant/remote_data_info.dart';
+import '../../../../../core/error/failures/failures.dart';
 import '../../model/user_model.dart';
 import '../local_data_source/local_data_source.dart';
 
@@ -32,6 +32,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         final tokenKey = json.decode(response.body)['data']['access_token'];
         final userInfo = await client.get(Uri.parse(RemoteDataInfo.userKey),
             headers: {'Authorization': 'Bearer $tokenKey'});
+            
         if (userInfo.statusCode == 200) {
           localDataSource.logIn(tokenKey);
           final userModel = UserModel.fromJson(json.decode(userInfo.body)['data']);

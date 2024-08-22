@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/constant/remote_data_info.dart';
-import 'package:e_commerce/core/error/failures/failures.dart';
 import 'package:e_commerce/features/auth/data/data_source/remote_data_source/remote_data_source.dart';
 import 'package:e_commerce/features/auth/data/model/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -36,10 +35,13 @@ void main() {
         //signin testing
         test('should return true', () async{
           when(httpClient.post(Uri.parse(RemoteDataInfo.loginKey),body:body))
-          .thenAnswer((_) => Future(()=> Response(json.encode({'access_key':acces_key}), 201)),);
-        
+          .thenAnswer((_) => Future(()=> Response(json.encode({'data': {'access_key':acces_key}}), 201)),);
+          
+          when(httpClient.get(Uri.parse(RemoteDataInfo.userKey),
+            headers: {'Authorization': 'Bearer $acces_key'}))
+            .thenAnswer((_) => Future(() => Response(json.encode(dummyUser.toJson()), 200),),);
         final res = await remoteDataSource.logIn(dummyUser.email,dummyUser.name);
-         expect(res,  acces_key);
+         expect(res,  Right(dummyUser));
 
         },);
 
